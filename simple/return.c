@@ -1,16 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
-void		ft_strlen(void)
+void		ft_strlen(int c)
 {
-	int		i = 0;
-
-	while (i < 0) 
-		i++;
+	if (c < 100)
+		return ;
 }
 
 int		main(void)
 {
-	ft_strlen();
+	ft_strlen('A');
 	return (0);
 }
