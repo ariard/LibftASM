@@ -14,6 +14,12 @@ extern int		ft_isdigit(int c);
 
 extern int		ft_isalnum(int c);
 
+extern int		ft_toupper(int c);
+
+extern int		ft_tolower(int c);
+
+extern int 		ft_test(int c);
+
 
 int		main(void)
 {
@@ -117,7 +123,7 @@ int		main(void)
 		printf("t isn t alpha\n");
 
 	ISALNUM - test
-*/
+
 
 	if (ft_isalnum('9'))
 		printf("9 is alpha\n");
@@ -145,6 +151,37 @@ int		main(void)
 	else
 		printf("- isn t alpha\n");
 	
-	
+//	TOUPPER - test
+
+	int	b;
+
+	b = ft_toupper('a');
+	printf("%c\n", b);
+	b = ft_toupper('c');
+	printf("%c\n", b);
+	b = ft_toupper('z');
+	printf("%c\n", b);
+	b = ft_toupper('-');
+	printf("%c\n", b);
+	b = ft_toupper('P');
+	printf("[%c]\n", b);
+
+
+//	TOLOWER - test
+*/
+	int	b;
+
+	b = ft_tolower('A');
+	printf("%c\n", b);
+	b = ft_tolower('B');
+	printf("%c\n", b);
+	b = ft_tolower('Z');
+	printf("%c\n", b);
+	b = ft_tolower('-');
+	printf("%c\n", b);
+	b = ft_tolower('p');
+	printf("[%c]\n", b);
+
+
 	return (0);
 }
