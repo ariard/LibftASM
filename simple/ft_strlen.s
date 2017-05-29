@@ -4,13 +4,11 @@ section .text
 _ft_strlen:
 	push rbp
 	mov rbp, rsp
-	mov DWORD [rbp-0x4], 0x0
-_loop_count:
-	add rdi, 0x1
-	mov eax, DWORD [rbp-0x4]
-	add eax, 0x1 	
-	mov DWORD [rbp-0x4], eax
-	cmp BYTE [rdi], 0x0
-	jne _loop_count
+	mov rcx, 0x7FFFFFFFFFFFFFFF
+	xor al, al
+	cld
+	repnz scasb
+	mov rax, 0x7FFFFFFFFFFFFFFE
+	sub rax, rcx
 	leave
 	ret

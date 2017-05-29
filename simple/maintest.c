@@ -49,17 +49,16 @@ int		main(void)
 	write(1, &a[0], 100000);
 
 	STRLEN - simple test
-
-	char	*a;
+*/
+	char	*a1;
 	int		b;
 
-	a = "Hello Bonjour";
+	a1 = "Hello Bonjour";
 
 		
-	printf("%zu\n", strlen(a));
-	printf("%zu\n", ft_strlen(a));
+	printf("%zu\n", strlen(a1));
+	printf("%zu\n", ft_strlen(a1));
 
-	STRLEN - big test
 
 	char	a[100000];
 	int		i = -1;
@@ -69,7 +68,7 @@ int		main(void)
 	printf("%zu\n", strlen(a));
 	printf("%zu\n", ft_strlen(a));
 
-	MEMCPY - simple test
+/*	MEMCPY - simple test
 
 	
 	ISALPHA - test
@@ -168,8 +167,7 @@ int		main(void)
 
 
 //	TOLOWER - test
-*/
-	int	b;
+
 
 	b = ft_tolower('A');
 	printf("%c\n", b);
@@ -181,7 +179,7 @@ int		main(void)
 	printf("%c\n", b);
 	b = ft_tolower('p');
 	printf("[%c]\n", b);
-
+*/
 
 	return (0);
 }
