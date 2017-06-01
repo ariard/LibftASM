@@ -20,6 +20,11 @@ extern int		ft_tolower(int c);
 
 extern int 		ft_test(int c);
 
+extern int		ft_memcpy(void *dst, void *src, size_t n);
+
+extern int 		ft_memset(void *b, int c, size_t len);
+
+extern char		*ft_strdup(char *a);
 
 int		main(void)
 {
@@ -49,7 +54,7 @@ int		main(void)
 	write(1, &a[0], 100000);
 
 	STRLEN - simple test
-*/
+
 	char	*a1;
 	int		b;
 
@@ -68,7 +73,7 @@ int		main(void)
 	printf("%zu\n", strlen(a));
 	printf("%zu\n", ft_strlen(a));
 
-/*	MEMCPY - simple test
+	MEMCPY - simple test
 
 	
 	ISALPHA - test
@@ -179,7 +184,26 @@ int		main(void)
 	printf("%c\n", b);
 	b = ft_tolower('p');
 	printf("[%c]\n", b);
-*/
+
+	MEMCPY
+
+	char	dest[12];
+	char	*src = "Yolo swag !!";
+
+	bzero(dest, 12);
+	ft_memcpy(dest, src, 12);
+	write(1, dest, 12);
+
+	char	dest[12];
+
+	ft_memset(dest, 'A', 12);
+	write(1, dest, 12);
+
+*/	
+	char	*a;
+
+	a = ft_strdup("This is a test");
+//	printf("%s\n", a);
 
 	return (0);
 }
