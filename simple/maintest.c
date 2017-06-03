@@ -24,7 +24,7 @@ extern int		ft_memcpy(void *dst, void *src, size_t n);
 
 extern int 		ft_memset(void *b, int c, size_t len);
 
-extern char		*ft_strdup(char *a);
+extern char		*ft_strdup2(char *a);
 
 int		main(void)
 {
@@ -199,11 +199,19 @@ int		main(void)
 	ft_memset(dest, 'A', 12);
 	write(1, dest, 12);
 
-*/	
+	
 	char	*a;
 
 	a = ft_strdup("This is a test");
 //	printf("%s\n", a);
 
+	char	*a;
+	int	i;
+	char	*b;
+
+	b = "hello";
+	a = ft_strdup2(b);
+	printf("test :%s\n", a);
+*/
 	return (0);
 }
