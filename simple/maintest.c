@@ -2,6 +2,7 @@
 #include <strings.h>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 
 extern void 	ft_bzero(void *s, size_t n);
@@ -26,7 +27,12 @@ extern int 		ft_memset(void *b, int c, size_t len);
 
 extern char		*ft_strdup2(char *a);
 
-int		main(void)
+extern void		ft_cat(int fd);
+
+extern	char		*ft_strcat(char *s1, char *s2); 
+
+
+int		main(int argc, char **argv)
 {
 
 /* 	BZERO - simple test
@@ -212,6 +218,19 @@ int		main(void)
 	b = "hello";
 	a = ft_strdup2(b);
 	printf("test :%s\n", a);
+
+	int	fd;
+	
+	fd = open(argv[1], O_RDONLY);
+	ft_cat(fd);
 */
+	char	buffer[100];
+	char	*s;
+
+	bzero(buffer, 100);	
+	strcat(buffer, "coucoutoi");
+	s = ft_strcat(buffer, "hello");
+	printf("%s\n", s);
+
 	return (0);
 }
