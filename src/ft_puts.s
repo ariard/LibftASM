@@ -1,6 +1,6 @@
 section .text
 	global ft_puts
-	extern ft_strlen
+	extern _ft_strlen
 
 _ft_puts:
 	push rbp
