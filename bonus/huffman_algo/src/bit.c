@@ -1,6 +1,4 @@
-#include <string.h>
-
-#include "bit.h"
+#include "compress.h"
 
 int	bit_get(const unsigned char *bits, int pos)
 {
@@ -41,7 +39,6 @@ void	bit_xor(const unsigned char *bits1, const unsigned char *bits2, unsigned
 		else
 			bit_set(bitsx, i, 0);
 	}
-
 	return;
 }
 

@@ -31,8 +31,13 @@ OBJ_DIR		=	objs/
 SRC_BASE	=	\
 compress.c\
 huffman_tree.c\
+table.c\
 main.c\
-read_debug.c
+read_debug.c\
+bit.c\
+do_compress.c\
+hufftree_print.c
+
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJS		=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))

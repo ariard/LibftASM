@@ -1,39 +1,56 @@
 #include "compress.h"
 
-int	compress(char *original, char **compressed)
+int	compress(char *original, unsigned char **compressed)
 {
-	float		tab_frequency[(int)SIZE + 1];
-	char		*ptr;
-	int		i;
-	float		scale;
-	t_huffnode	hufftree;
-	t_list		*begin;
-	
-	(void)compressed;
+	int			tab_frequency[(int)SIZE + 1];
+	char			*ptr;
+	int			i;
+	int			max;
+	int			scale;
+	t_huffnode		root;
+	t_huffnode		*node;
+	t_list			*begin;
+	t_huffelem		table[256 + 1];
+
+	begin = NULL;
 	i = -1;
 	while (++i < SIZE)
-		tab_frequency[i] = 0.0;
+		tab_frequency[i] = 0;
 	ptr = original;
-	while (*ptr)
+	while (ptr && *ptr)
 		tab_frequency[(int)*ptr++]++;
-
+	i = -1;
+	max = SIZE;	
+	while (++i < SIZE)
+		if (tab_frequency[i] > max)
+			max = tab_frequency[i];
 	i = -1;
 	while (++i < SIZE)
 	{
-		scale = tab_frequency[i] / SIZE;
-		if (scale > 1 || scale < 0)
-			scale = 0;
-		tab_frequency[i] = scale;
+		scale = (int)(tab_frequency[i] / ((double)max / (double)max));
+		if (scale == 0 && tab_frequency[i])
+			tab_frequency[i] = 1;
+		else
+			tab_frequency[i] = scale;
 	}
-
 	i = -1;
-	while (tab_frequency[++i] == 0.0);
-	begin = ft_lstnew(init_huffnode(i, tab_frequency[i]), sizeof(t_huffnode *));
-	while (++i < SIZE)
-		if (tab_frequency[i] > 0.0)
-			ft_lst_sorted_insert(&begin, ft_lstnew(init_huffnode(i, tab_frequency[i]),
-			sizeof(t_huffnode *)), &cmp_tree);
-	read_prio_frequency(&begin);
-	build_tree(tab_frequency, &hufftree);
-	return (0);
+	while (++i < 256)
+		if (tab_frequency[i] > 0)
+		{
+			init_huffnode(&root, i, tab_frequency[i]);
+			if (!begin)
+				begin = ft_lstnew(&root, sizeof(t_huffnode));
+			else
+				ft_lst_sorted_insert(&begin, ft_lstnew(&root,
+					sizeof(t_huffnode)), &cmp_tree);
+		}
+//	read_prio_frequency(&begin);
+	build_tree(&begin);
+	node = begin->content;
+	i = -1;
+	while (++i < 256)
+		table[i].code = 0;
+	build_table(node, table, 0x0000, 0);
+//	read_tab_code(table, tab_frequency);
+	return(do_compress(compressed, table, original, tab_frequency));
 }
