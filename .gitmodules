@@ -1,0 +1,6 @@
+[submodule "libft"]
+	path = libft
+	url = https://github.com/jzck/libft.git
+[submodule "huffman_algo/libft"]
+	path = huffman_algo/libft
+	url = https://github.com/jzck/libft.git

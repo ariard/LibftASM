@@ -7,10 +7,11 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/ioctl.h>
+# include <sys/mman.h>
 
 # include "../libft/includes/libft.h"
 
-# define SIZE		256.0
+# define SIZE		256
 # define FT_MAX(a, b) ((a) > (b) ? (a) : (b))
 
 struct s_huffnode
@@ -35,13 +36,21 @@ int		compress(char *original, unsigned char **compressed);
 
 int		cmp_tree(void *content1, void *content2);
 
-void		init_huffnode(t_huffnode *huffnode, char sym, int frequency);
+void	init_huffnode(t_huffnode *huffnode, char sym, int frequency);
 
-void		build_tree(t_list **begin);
+void	build_tree(t_list **begin);
 
-void		build_table(t_huffnode *root, t_huffelem table[], unsigned short code, unsigned short size);
+void	build_table(t_huffnode *root, t_huffelem table[], unsigned short code, unsigned short size);
 
 int		do_compress(unsigned char **compressed, t_huffelem table[], char *ori, int tab_frequency[]);
+
+void	gen_lst_freq(t_list **begin, int tab_frequency[]);
+
+/* Uncompress */
+
+void	parse_freq(unsigned char *data, int tab_frequency[]);
+
+void	parse_tree(t_huffnode *tree, unsigned char **uncompressed, unsigned char **data);
 
 /* Debug */
 

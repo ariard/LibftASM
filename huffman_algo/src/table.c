@@ -4,7 +4,7 @@ void		build_table(t_huffnode *root, t_huffelem table[], unsigned short code, uns
 {
 	if (root)
 	{
-       		if (root->left)
+       	if (root->left)
 			build_table(root->left, table, code << 1, size + 1);
 		if (root->right)
 			build_table(root->right, table, (code << 0x001) | 0x1, size + 1);

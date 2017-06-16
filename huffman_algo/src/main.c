@@ -5,6 +5,7 @@ int	main(int argc, char **argv)
 	char		*data;
 	char		buffer[1000 + 1];
 	unsigned char	*compressed;
+	char	*name;
 	int		fd;
 	int		size;
 	int		len;
@@ -25,7 +26,10 @@ int	main(int argc, char **argv)
 	size = compress(data, &compressed);
 	close(fd);
 	free(data);
-	fd = open("file_compressed", O_CREAT | O_WRONLY, 0644);
+	name = malloc(sizeof(argv[1]) * ft_strlen(argv[1]) + 12);
+	strcpy(name, argv[1]);
+	strcat(name, "_compressed");
+	fd = open(name, O_CREAT | O_WRONLY, 0644);
 	while (size-- && fd >= 0)
 		write(fd, compressed++, 1);
 	close(fd);

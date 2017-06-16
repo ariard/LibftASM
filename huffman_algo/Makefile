@@ -6,13 +6,13 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 00:35:24 by ariard            #+#    #+#              #
-#    Updated: 2017/06/09 20:07:59 by ariard           ###   ########.fr        #
+#    Updated: 2017/06/16 18:15:20 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	compress
+NAME		=	compress uncompress
 
-CC		=	gcc
+CC			=	gcc
 FLAGS		=	-Wall -Wextra -Werror
 D_FLAGS		=	
 
@@ -27,32 +27,44 @@ SRC_DIR		=	src/
 INC_DIR		=	includes/
 OBJ_DIR		=	objs/
 
+COM_OBJ		=	$(OBJ_DIR)main.o
+UN_OBJ		=	$(OBJ_DIR)main_uncompress.o $(OBJ_DIR)data_uncompress.o
 
 SRC_BASE	=	\
 compress.c\
 huffman_tree.c\
 table.c\
-main.c\
 read_debug.c\
-bit.c\
 do_compress.c\
+bit.c\
+data_uncompress.c\
+main.c\
+main_uncompress.c\
 hufftree_print.c
-
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJS		=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
+OBJS		:=	$(filter-out $(COM_OBJ), $(OBJS))
+OBJS		:=	$(filter-out $(UN_OBJ), $(OBJS))
 NB			=	$(words $(SRC_BASE))
 INDEX		=	0
 
 all :
-	@make -C $(LIBFT_DIR)
-	@make -j $(NAME)
+		@make -C $(LIBFT_DIR)
+		@make -j $(NAME)
 
-$(NAME) : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS)
+compress : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(COM_OBJ)
 	@$(CC) $(OBJS) -o $@ \
 		-I $(INC_DIR) \
 		-I $(LIBFT_INC) \
-		$(LIBS) $(LIBFT_LIB) $(FLAGS)
+		$(LIBS) $(LIBFT_LIB) $(COM_OBJ) $(FLAGS)
+	@printf "\r\033[48;5;15;38;5;25m✅ MAKE $@ \033[0m\033[K\n"
+
+uncompress : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(UN_OBJ)
+	@$(CC) $(OBJS) -o $@ \
+		-I $(INC_DIR) \
+		-I $(LIBFT_INC) \
+		$(LIBS) $(LIBFT_LIB) $(UN_OBJ) $(FLAGS)
 	@printf "\r\033[48;5;15;38;5;25m✅ MAKE $@ \033[0m\033[K\n"
 
 $(LIBFT_LIB):

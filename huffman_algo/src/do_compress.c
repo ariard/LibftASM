@@ -1,35 +1,30 @@
 #include "compress.h"
 
-int	make_header(unsigned char *comp, int tab_frequency[], int size)
+int	do_compress(unsigned char **compressed, t_huffelem table[], char *ori,
+	int tab_frequency[])
 {
-	int	hsize;
-	int	c;
+	int				i;
+	int				ipos;
+	int				opos;
+	int				cpos;
+	int				c;
+	int				size;
+	unsigned char	*comp;
+	unsigned char	*temp;
+	int				hsize;	
 
+	size = ft_strlen(ori);
+	comp = NULL;
 	hsize = sizeof(int) + (SIZE + 1);
 	if ((comp = (unsigned char *)malloc(hsize)) == NULL)
 		return (-1);
 	memcpy(comp, &size, sizeof(int));
-	
+	DG("size is %d", size);
+
 	for (c = 0; c <= SIZE; c++)
 		comp[sizeof(int) + c] = (unsigned char)tab_frequency[c];
-	return (hsize);
-}
+	opos = hsize * 8;
 
-int	do_compress(unsigned char **compressed, t_huffelem table[], char *ori,
-	int tab_frequency[])
-{
-	int	i;
-	int	ipos;
-	int	opos;
-	int	cpos;
-	int	c;
-	int	size;
-	unsigned char	*comp;
-	unsigned char	*temp;
-
-	size = ft_strlen(ori);
-	comp = NULL;
-	opos = make_header(comp, tab_frequency, size) * 8;
 	ipos = 0;
 	while (ipos < size)
 	{

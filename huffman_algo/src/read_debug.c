@@ -17,16 +17,14 @@ void		read_prio_frequency(t_list **begin)
 	t_huffnode	*huff;
 
 	tmp = *begin;
-	DG("FREQUENCY\n");
-	if (!tmp)
-		printf("BUG");
+	printf("FREQUENCY\n");
 	while (tmp)
 	{
-		huff = tmp->content;
-		DG("sym %c, freq %d\n", huff->sym, huff->frequency);
+		huff = tmp->content; 
+		printf("sym %c, freq %d\n", huff->sym, huff->frequency);
 		tmp = tmp->next;
 	}
-	DG("\n");
+	printf("\n");
 }
 
 void		read_tab_code(t_huffelem table[], int tab_frequency[])
