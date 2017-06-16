@@ -44,9 +44,11 @@ int		compress(char *original, unsigned char **compressed)
 	i = -1;
 	while (++i < SIZE)
 	{
-		scale = (int)(tab_frequency[i] / ((double)max / (double)max));
+		scale = (int)(tab_frequency[i] / ((double)max / (double)SIZE));
 		if (scale == 0 && tab_frequency[i])
 			tab_frequency[i] = 1;
+		else if (scale == SIZE)
+			tab_frequency[i] = SIZE - 1;
 		else
 			tab_frequency[i] = scale;
 	}
