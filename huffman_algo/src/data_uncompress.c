@@ -9,21 +9,28 @@ void		parse_freq(unsigned char *data, int tab_frequency[])
 		tab_frequency[i] = data[sizeof(int) + i];
 }
 
-void		parse_tree(t_huffnode *tree, unsigned char **uncompressed, unsigned char **data)
+void		parse_tree(t_huffnode *tree, unsigned char *uncompressed, unsigned char *data, int size)
 {
-	if (tree)						
-	{			
-		if (tree->left && !bit_get((unsigned char *)*data, 0))
-		{
-			*data = *(data + 1);
-			parse_tree(tree->left, uncompressed, data);
+	int		i;
+	int		j;
+	t_huffnode	*node;
+	int		state;
+
+	i = 0;
+	j = 0;
+	while (i <= size)
+	{
+		node = tree;
+		while (node->right && node->left)
+		{	
+			state = bit_get(data, j);
+			if (!state && node->left)
+				node = node->left;
+			if (state && node->right)
+				node = node->right;
+			j++;
 		}
-		if (tree->right && bit_get((unsigned char *)*data, 0))
-		{
-			*data = *(data + 1);
-			parse_tree(tree->right, uncompressed, data);
-		}
-		if (!tree->left && !tree->right)
-			ft_strcat((char *)*uncompressed, (char *)&tree->sym);
-	} 
+		ft_memcpy(&uncompressed[i], &node->sym, sizeof(char));
+		i++;
+	}
 }

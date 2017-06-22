@@ -53,12 +53,12 @@ int		compress(char *original, unsigned char **compressed)
 			tab_frequency[i] = scale;
 	}
 	gen_lst_freq(&begin, tab_frequency);
-	read_prio_frequency(&begin);
 	build_tree(&begin);
 	node = begin->content;
 	i = -1;
 	while (++i < 256)
 		table[i].code = 0;
 	build_table(node, table, 0x0000, 0);
+//	read_tab_code(table, tab_frequency);	
 	return(do_compress(compressed, table, original, tab_frequency));
 }

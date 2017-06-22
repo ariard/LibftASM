@@ -50,7 +50,7 @@ void	gen_lst_freq(t_list **begin, int tab_frequency[]);
 
 void	parse_freq(unsigned char *data, int tab_frequency[]);
 
-void	parse_tree(t_huffnode *tree, unsigned char **uncompressed, unsigned char **data);
+void	parse_tree(t_huffnode *tree, unsigned char *uncompressed, unsigned char *data, int size);
 
 /* Debug */
 
