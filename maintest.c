@@ -4,233 +4,264 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#include "libft.h"
 
-extern void 	ft_bzero(void *s, size_t n);
+// -set test
+// - do it
+// - verify
+// - print
 
-extern size_t	ft_strlen(char *s);
-
-extern int		ft_isalpha(int c);
-
-extern int		ft_isdigit(int c);
-
-extern int		ft_isalnum(int c);
-
-extern int		ft_toupper(int c);
-
-extern int		ft_tolower(int c);
-
-extern int 		ft_test(int c);
-
-extern int		ft_memcpy(void *dst, void *src, size_t n);
-
-extern int 		ft_memset(void *b, int c, size_t len);
-
-extern char		*ft_strdup2(char *a);
-
-extern void		ft_cat(int fd);
-
-extern	char		*ft_strcat(char *s1, char *s2); 
-
-
-int		main(int argc, char **argv)
+void	test_bzero(void)
 {
-
-/* 	BZERO - simple test
-	char	a[16];
-
-	strcpy(a, "[Hello World!]\n");
-	write(1, &a[0], 15);
-	ft_bzero(&a[1], 12);
-	write(1, &a[0], 15);
-	return (0);
-
-	BZERO - more test	
-
-	char	a[100000];
-	int		i = -1;
-	int		c = 10;
-
-	while (++i < 100000)
-		a[i] = 'A';
-	write(1, &a[0], 100000);
-	ft_bzero(&a[0], 100000);
-	write (1, &c, 1);
-	c = 68;
-	write (1, &c, 1);
-	write(1, &a[0], 100000);
-
-	STRLEN - simple test
-
-	char	*a1;
-	int		b;
-
-	a1 = "Hello Bonjour";
-
-		
-	printf("%zu\n", strlen(a1));
-	printf("%zu\n", ft_strlen(a1));
-
-
-	char	a[100000];
-	int		i = -1;
-
-	while (++i < 100000)
-		a[i] = 'A';
-	printf("%zu\n", strlen(a));
-	printf("%zu\n", ft_strlen(a));
-
-	MEMCPY - simple test
-
-	
-	ISALPHA - test
-
-	if (ft_isalpha('A'))
-		printf("A is alpha\n");
-	else
-		printf("A isn t alpha\n");
-
-	if (ft_isalpha('Y'))
-		printf("Y is alpha\n");
-	else
-		printf("Y isn t alpha\n");
-
-	if (ft_isalpha('_'))
-		printf("_ is alpha\n");
-	else
-		printf("_ isn t alpha\n");
-
-	if (ft_isalpha('a'))
-		printf("a is alpha\n");
-	else
-		printf("a isn t alpha\n");
-
-	if (ft_isalpha('z'))
-		printf("z is alpha\n");
-	else
-		printf("z isn t alpha\n");
-
-
-	ISDIGIT - test
-
-	if (ft_isdigit('0'))
-		printf("0 is alpha\n");
-	else
-		printf("0 isn t alpha\n");
-
-	if (ft_isdigit('9'))
-		printf("9 is alpha\n");
-	else
-		printf("9 isn t alpha\n");
-
-	if (ft_isdigit('5'))
-		printf("5 is alpha\n");
-	else
-		printf("5 isn t alpha\n");
-
-	if (ft_isdigit('t'))
-		printf("t is alpha\n");
-	else
-		printf("t isn t alpha\n");
-
-	ISALNUM - test
-
-
-	if (ft_isalnum('9'))
-		printf("9 is alpha\n");
-	else
-		printf("9 isn t alpha\n");
-
-
-	if (ft_isalnum('5'))
-		printf("5 is alpha\n");
-	else
-		printf("5 isn t alpha\n");
-
-	if (ft_isalnum('t'))
-		printf("t is alpha\n");
-	else
-		printf("t isn t alpha\n");
-
-	if (ft_isalnum('B'))
-		printf("B is alpha\n");
-	else
-		printf("B isn t alpha\n");
-
-	if (ft_isalnum('-'))
-		printf("- is alpha\n");
-	else
-		printf("- isn t alpha\n");
-	
-//	TOUPPER - test
-
-	int	b;
-
-	b = ft_toupper('a');
-	printf("%c\n", b);
-	b = ft_toupper('c');
-	printf("%c\n", b);
-	b = ft_toupper('z');
-	printf("%c\n", b);
-	b = ft_toupper('-');
-	printf("%c\n", b);
-	b = ft_toupper('P');
-	printf("[%c]\n", b);
-
-
-//	TOLOWER - test
-
-
-	b = ft_tolower('A');
-	printf("%c\n", b);
-	b = ft_tolower('B');
-	printf("%c\n", b);
-	b = ft_tolower('Z');
-	printf("%c\n", b);
-	b = ft_tolower('-');
-	printf("%c\n", b);
-	b = ft_tolower('p');
-	printf("[%c]\n", b);
-
-	MEMCPY
-
-	char	dest[12];
-	char	*src = "Yolo swag !!";
-
-	bzero(dest, 12);
-	ft_memcpy(dest, src, 12);
-	write(1, dest, 12);
-
-	char	dest[12];
-
-	ft_memset(dest, 'A', 12);
-	write(1, dest, 12);
-
-	
-	char	*a;
-
-	a = ft_strdup("This is a test");
-//	printf("%s\n", a);
-
-	char	*a;
+	char	a[16 + 1];
+	char	wit[16];
 	int	i;
-	char	*b;
 
-	b = "hello";
-	a = ft_strdup2(b);
-	printf("test :%s\n", a);
+	ft_bzero(NULL, 100);	
+	printf(GREEN"bzero - NULL ptr\n"RESET);
 
-	int	fd;
+
+	ft_bzero(a, 0);
+	printf(GREEN"bzero - 0 size\n"RESET);
 	
-	fd = open(argv[1], O_RDONLY);
-	ft_cat(fd);
-*/
-	char	buffer[100];
-	char	*s;
 
-	bzero(buffer, 100);	
-	strcat(buffer, "coucoutoi");
-	s = ft_strcat(buffer, "hello");
-	printf("%s\n", s);
+	ft_bzero(a, -10);			
+	printf(GREEN"bzero - negative size\n"RESET); 
 
+
+	bzero(a, 16);
+	bzero(wit, 16);
+	strcpy(a, "hello world");
+	ft_bzero(a, 16);
+	i = -1;
+	while (++i < 16)
+		if (a[i] != wit[i])
+			printf(RED"bzero - simple test\n"RESET);
+	if (i == 16)
+		printf(GREEN"bzero - simple test\n"RESET);
+
+
+	bzero(a, 16);
+	bzero(wit, 16);
+	strcpy(a, "hello world");
+	strcpy(wit, "hello world");
+	bzero(wit[4], 5);
+	ft_bzero(a[4], 5);
+	i = -1;
+	while (++i < 16)
+		if (a[i] != wit[i])
+			printf(RED"bzero - simple test 2\n"RESET);
+	if (i == 16)
+		printf(GREEN"bzero - simple test 2\n"RESET);
+
+
+	bzero(a, 16);
+	bzero(wit, 16);
+	strcpy(a, "hello world");
+	strcpy(wit, "hello world");
+	bzero(wit[6], 20);
+	ft_bzero(a[6], 20);
+	i = -1;
+	while (++i < 16)
+		if (a[i] != wit[i])
+			printf(RED"bzero - simple test 3\n"RESET);
+	if (i == 16)
+		printf(GREEN"bzero - simple test 3\n"RESET);
+}
+
+void	test_strcat(void)
+{
+	char	*test[16] = "hello ";
+	char	*wit[16] = "hello ";
+	char	*test2[8] = "hello ";
+	char	*wit2[8] = "hello ";
+	char	*test3[1000 + 1];
+	char	*wit2[1000 + 1] = "hello ";
+	char	*b = "world!";
+	char	c[1000 + 1];
+	int	i;
+
+	ft_strcat(NULL, NULL);	
+	printf(GREEN"strcat - NULL str\n"RESET);
+
+
+	strcat(wit, b);
+	ft_strcat(test, b);
+	i = -1;
+	while (++i < 16)
+		if (test[i] != wit[i])
+			printf(RED"strcat - simple test\n"RESET);
+	if (i == 16)
+		printf(GREEN"strcat - simple test\n"RESET);
+
+
+	strcat(wi2t, b);
+	ft_strcat(test2, b);
+	i = -1;
+	while (++i < 16)
+		if (test2[i] != wit2[i])
+			printf(RED"strcat - too short s1\n"RESET);
+	if (i == 16)
+		printf(GREEN"strcat - too short s1\n"RESET);
+
+
+	memset(c, 'A', 1000);
+	strcat(wi3t, c);
+	ft_strcat(wit3, c);
+	i = -1;
+	while (++i < 1000)
+		if (test3[i] != wit3[i])
+			printf(RED"strcat - fat s2\n"RESET);
+	if (i == 1000)
+		printf(GREEN"strcat - fat s2\n"RESET);
+}
+	
+void	test_isalpha(void)
+{
+	char	i;
+
+	i = -1;
+	while (++i < 127)
+	{
+		if (ft_isalpha(i) == isalpha(i))
+			printf(GREEN"isalpha - %c\n"RESET, i);
+		else
+			printf(RED"isalpha - %c\n"RESET, i);
+	}
+}
+
+
+void	test_isdigit(void)
+{
+	char	i;
+
+	i = -1;
+	while (++i < 127)
+	{
+		if (ft_isdigit(i) == isdigit(i))
+			printf(GREEN"isdigit - %c\n"RESET, i);
+		else
+			printf(RED"isdigit - %c\n"RESET, i);
+	}
+}
+
+void	test_isalnum(void)
+{
+	char	i;
+
+	i = -1;
+	while (++i < 127)
+	{
+		if (ft_isalnum(i) == isalnum(i))
+			printf(GREEN"isalnum - %c\n"RESET, i);
+		else
+			printf(RED"isalnum - %c\n"RESET, i);
+	}
+}
+
+void	test_isprint(void)
+{
+	char	i;
+
+	i = -1;
+	while (++i < 127)
+	{
+		if (ft_isprint(i) == isprint(i))
+			printf(GREEN"isprint - %c\n"RESET, i);
+		else
+			printf(RED"isprint - %c\n"RESET, i);
+	}
+}
+
+void	test_toupper(void)
+{
+	char	i;
+
+	i = -1;
+	while (++i < 127)
+	{
+		if (ft_toupper(i) == toupper(i))
+			printf(GREEN"toupper - %c\n"RESET, i);
+		else
+			printf(RED"toupper - %c\n"RESET, i);
+	}
+}
+
+
+void	test_tolower(void)
+{
+	char	i;
+
+	i = -1;
+	while (++i < 127)
+	{
+		if (ft_tolower(i) == tolower(i))
+			printf(GREEN"tolower - %c\n"RESET, i);
+		else
+			printf(RED"tolower - %c\n"RESET, i);
+	}
+}
+
+void	test_puts(void)
+{
+	ft_puts(NULL);
+	printf(GREEN"puts - NULL ptr\n"RESET);
+
+
+	ft_puts(GREEN"puts - my own printer\n"RESET);
+}
+	
+void	test_strlen(void)
+{
+	char	a[1000 + 1];
+
+	ft_strlen(NULL);
+	printf(GREEN"strlen - NULL ptr\n"RESET);
+
+
+	if (ft_strlen("") != strlen(""))
+		printf(RED"strlen - nothing string\n"RESET);
+	else
+		printf(GREEN"strlen - nothing string\n"RESET);
+
+
+	if (ft_strlen("little string") != strlen("little string"))
+		printf(RED"strlen - little  string\n"RESET);
+	else
+		printf(GREEN"strlen - little string\n"RESET);
+
+
+	if (ft_strlen("st\nrin\tg") != strlen("st\nrin\tg"))
+		printf(RED"strlen - special char string\n"RESET);
+	else
+		printf(GREEN"strlen - special char string\n"RESET);
+
+
+	memset(a, 'A', 1000);	
+	if (ft_strlen(a) != strlen(a))
+		printf(RED"strlen - fat string\n"RESET);
+	else
+		printf(GREEN"strlen - fat string\n"RESET);
+}
+
+void	test_memset(void)
+{
+	
+			
+
+int	main(int argc, char **argv)
+{
+	test_bzero();
+	test_strcat();
+	test_isalpha();
+	test_isdigit();
+	test_isalnum();
+	test_tolower();
+	test_toupper();
+	test_puts();
+	test_strlen();
+	test_memset();
+	test_memcpy();
+	test_strdup();
 	return (0);
 }
