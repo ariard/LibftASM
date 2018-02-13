@@ -1,4 +1,4 @@
-NAME		= libft.a
+NAME		= libfts.a
 
 ASM		= nasm
 ASM_FLAGS	= -f macho64
@@ -46,12 +46,11 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.s | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	$(MKDIR) $(OBJ_DIR)
-	$(MKDIR) $(dir $(OBJS))
 
 clean:
 	$(RM) $(OBJ_DIR)
 
-flcean: clean
+fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
