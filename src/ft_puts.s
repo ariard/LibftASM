@@ -1,5 +1,5 @@
 section .text
-	global ft_puts
+	global _ft_puts
 	extern _ft_strlen
 
 _ft_puts:

@@ -47,6 +47,10 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.s | $(OBJ_DIR)
 $(OBJ_DIR):
 	$(MKDIR) $(OBJ_DIR)
 
+test:
+	gcc -o maintest maintest.c $(NAME)
+	./maintest $(ARG)
+
 clean:
 	$(RM) $(OBJ_DIR)
 

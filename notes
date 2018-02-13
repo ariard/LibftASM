@@ -1,5 +1,50 @@
-calling convention : 
+calling convention :
+	- ebp must be saved
+
+CC:
+	- return value (rax, rdx)
+	- rdi, rsi, rdx, rcx, r8, r9
+	- stack (right to left)
+	- stack alignement : 16-byte
+	- scratch reg : rax, rdi, rsi, rdx, rcx, r8, r9, r10, r11	
+	- preserverd reg : rbx, rsp, rbp, r12, r13, r14, r15
+
+ADDRESSING MODE:
+
+	- instruction that refer to 64-bit registers are automatically performed
+		with 64-bit precision (For example mov rax, [rbx] moves 8 bytes
+		beginning at rbx into rax
+	- a special form of the mov instruction has been added for 64-bit immediate
+		constants or constant adresses. Others are still 32 bits
+	- jmp, call, push, pop implictly refer to the instruction pointer and
+		stack pointer treat them as 64 bit registers
+
+opcode destination, source
 
 special register
 
 list of instructions
+
+frame : set of data on the stack (arguments + local variables)
+
+SYNTAXE:
+
+instruction reg1, reg2
+
+instruct(reg1, reg2) -> reg1 ins [reg2]
+
+(loading)
+
+
+REGISTER:
+
+ESP : stack pointer register
+
+EBP : base pointer register
+
+EIP : return register
+
+quad word : 64 bits
+double word : 32 bits
+word : 16 bits
+byte : 8 bits

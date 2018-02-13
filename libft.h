@@ -2,8 +2,8 @@
 # define LIBFT_H
 
 # define GREEN	"\x1b[32m"
-# define RED	"\x1b[0m"
-# define RESET	"\x1b[31m"
+# define RESET	"\x1b[0"
+# define RED	"\x1b[31m"
 
 void 	ft_bzero(void *s, size_t n);
 
@@ -19,13 +19,17 @@ int	ft_toupper(int c);
 
 int	ft_tolower(int c);
 
+int	ft_isprint(int c);
+
 int 	ft_test(int c);
 
 int	ft_memcpy(void *dst, void *src, size_t n);
 
 int 	ft_memset(void *b, int c, size_t len);
 
-char	*ft_strdup2(char *a);
+int		ft_puts(const char *s);	
+
+char	*ft_strdup(char *a);
 
 void	ft_cat(int fd);
 

@@ -3,13 +3,13 @@ NOW:
 	- maintest
 
 TODO: 
-	- make + compile
-	- main test partie obligatoire
-	- read again pcasm
+	- redo all functions in proper style then test again main
+	- write main test lacks
+	- read again pcasm good parts
 	- fonction bonus
 
 
 QUEST ? 
 	- 10 func bonus ?
-		(ft_strcpy, ft_strjoin, ft_strcmp, ft_strstr, ft_strrev, ft_lstnew, ft_lstdel, ft_lst_find, ft_firstadd, ft_lstead)
+		(ft_strjoin, ft_strcmp, ft_strstr, ft_strrev, ft_strchr)
 	- around func (section ? global ? leave ret ?)
