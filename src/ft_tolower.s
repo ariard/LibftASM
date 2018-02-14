@@ -4,7 +4,6 @@ section .text
 _ft_tolower:
 	push rbp
 	mov rbp, rsp
-	mov eax, edi
 	cmp edi, 0x41
 	jl _end
 	cmp edi, 0x5a

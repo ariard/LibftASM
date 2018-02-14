@@ -7,8 +7,8 @@ _ft_isalnum:
 	push rbp
 	mov rbp, rsp
 	call _ft_isalpha
-	mov DWORD [rbp-0x4], eax
-	cmp DWORD [rbp-0x4], 0x1
+	mov dword [rbp-0x4], eax
+	cmp dword [rbp-0x4], 0x1
 	je _end
 	call _ft_isdigit
 _end:

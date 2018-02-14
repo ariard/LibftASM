@@ -4,14 +4,14 @@ section .text
 _ft_bzero:
 	push rbp
 	mov rbp, rsp
-	cmp rdi, 0
+	cmp rdi, 0x0 		; check if ptr exists
 	je _end
-	cmp rsi, 0
+	cmp rsi, 0x0		; check if size exists
 	je _end
 _loop:
-	mov byte [rdi], 0
-	inc rdi	
-	dec rsi
+	mov byte [rdi], 0x0
+	inc rdi				; increase ptr
+	dec rsi				; decrease ptr
 	jnz _loop
 _end:
 	leave

@@ -52,7 +52,6 @@ void	test_bzero(void)
 		}
 	if (i == 16)
 		printf(GREEN"bzero - simple test 2\n"RESET);
-
 }
 
 void	test_strcat(void)
@@ -62,46 +61,57 @@ void	test_strcat(void)
 	char	test2[8] = "hello ";
 	char	wit2[8] = "hello ";
 	char	test3[1000 + 1];
-	char	wit3[1000 + 1] = "hello ";
+	char	wit3[1000 + 1];
 	char	*b = "world!";
-	char	c[1000 + 1];
+	char	c[1000];
 	int	i;
 
-	ft_strcat(NULL, NULL);	
+//	ft_strcat(NULL, NULL);	
 	printf(GREEN"strcat - NULL str\n"RESET);
 
 
-	strcat(wit, b);
-	ft_strcat(test, b);
-	i = -1;
-	while (++i < 16)
-		if (test[i] != wit[i])
-			printf(RED"strcat - simple test\n"RESET);
-	if (i == 16)
-		printf(GREEN"strcat - simple test\n"RESET);
+//	strcat(wit, b);
+//	ft_strcat(test, b);
+//	i = -1;
+//	while (++i < 16)
+//		if (test[i] != wit[i])
+//		{
+//			printf(RED"strcat - simple test\n"RESET);
+//			break;
+//		}
+//	if (i == 16)
+//		printf(GREEN"strcat - simple test\n"RESET);
 
 
-	strcat(wit2, b);
-	ft_strcat(test2, b);
-	i = -1;
-	while (++i < 16)
-		if (test2[i] != wit2[i])
-			printf(RED"strcat - too short s1\n"RESET);
-	if (i == 16)
-		printf(GREEN"strcat - too short s1\n"RESET);
+//	strcat(wit2, b);
+//	ft_strcat(test2, b);
+//	i = -1;
+//	while (++i < 16)
+//		if (test2[i] != wit2[i])
+//		{
+//			printf(RED"strcat - too short s1\n"RESET);
+//			break;
+//		}
+//	if (i == 16)
+//		printf(GREEN"strcat - too short s1\n"RESET);
 
-
+	memset(wit3, 0, 1000);
 	memset(c, 'A', 1000);
-	strcat(wit3, c);
-	ft_strcat(wit3, c);
+//	strcat(wit3, c);
+	memset(c, 'A', 1000);
+//	ft_strcat(test3, c);
 	i = -1;
 	while (++i < 1000)
 		if (test3[i] != wit3[i])
+		{
 			printf(RED"strcat - fat s2\n"RESET);
+			break;
+		}
 	if (i == 1000)
 		printf(GREEN"strcat - fat s2\n"RESET);
+
 }
-	
+
 void	test_isalpha(void)
 {
 	char	i;
@@ -110,6 +120,20 @@ void	test_isalpha(void)
 	while (++i < 127)
 	{
 		if (ft_isalpha(i) == isalpha(i))
+			printf(GREEN"isalpha - %c\n"RESET, i);
+		else
+			printf(RED"isalpha - %c\n"RESET, i);
+	}
+}
+
+void	test_isascii(void)
+{
+	char	i;
+
+	i = -1;
+	while (++i < 127)
+	{
+		if (ft_isascii(i) == isascii(i))
 			printf(GREEN"isalpha - %c\n"RESET, i);
 		else
 			printf(RED"isalpha - %c\n"RESET, i);
@@ -239,7 +263,74 @@ void	test_memset(void)
 
 void	test_memcpy(void)
 {
-	;
+	char	test[1000 + 1];
+	char	wit[1000 + 1];
+	char	buf[1000 + 1];
+	char	test2[8] = "hello ";
+	char	wit2[8] = "hello ";
+	char	test3[1000 + 1];
+	char	wit3[1000 + 1] = "hello ";
+	char	*b = "world!";
+	char	c[1000 + 1];
+	int	i;
+
+	ft_memcpy(NULL, NULL, 10);	
+	printf(GREEN"memcpy - NULL str\n"RESET);
+	
+	ft_memcpy("hello", "world", 0);	
+	printf(GREEN"memcpy - 0 size\n"RESET);
+
+//	memset(test3, 'A', 1000);
+// 	ft_memcpy("hello", 'A' 
+//	printf(GREEN"memcpy - overflow memcpy\n"RESET);
+//	bus error 
+
+	memset(test, 'A', 1000);
+	memcpy(wit, test, 1000);
+	memset(test, 'A', 1000);
+	memcpy(wit, test, 1000);
+	ft_memcpy(buf, test, 1000);
+	i = -1;
+	while (++i < 1000)
+		if (buf[i] != wit[i])
+		{
+			printf(RED"memcpy - simple test\n"RESET);
+			break;
+		}
+	if (i == 1000)
+		printf(GREEN"memcpy - simple test\n"RESET);
+
+	bzero(test, 1000);
+	memset(test, 'B', 500);
+	memcpy(wit, test, 1000);
+	bzero(test, 1000);
+	memset(test, 'B', 500);
+	ft_memcpy(buf, test, 1000);
+	i = -1;
+	while (++i < 1000)
+		if (buf[i] != wit[i])
+		{
+			printf(RED"memcpy - simple test 2\n"RESET);
+			break;
+		}
+	if (i == 1000)
+		printf(GREEN"memcpy - simple test 2\n"RESET);
+
+	bzero(test, 1000);
+	memset(&test[500], 'A', 500);
+	memcpy(wit, test, 1000);
+	bzero(test, 1000);
+	memset(&test[500], 'A', 500);
+	ft_memcpy(buf, test, 1000);
+	i = -1;
+	while (++i < 1000)
+		if (buf[i] != wit[i])
+		{
+			printf(RED"memcpy - simple test 3\n"RESET);
+			break; 
+		}
+	if (i == 1000)
+		printf(GREEN"memcpy - simple test 3\n"RESET);
 }
 
 void	test_strdup(void)
@@ -257,6 +348,8 @@ int	main(int argc, char **argv)
 	COND(test_isalpha(), "isalpha", "part1", "all")
 	COND(test_isdigit(), "isdigit", "part1", "all")
 	COND(test_isalnum(), "isalnum", "part1", "all")
+	COND(test_isascii(), "isascii", "part1", "all")
+	COND(test_isprint(), "isprint", "part1", "all")
 	COND(test_tolower(), "tolower", "part1", "all")
 	COND(test_toupper(), "toupper", "part1", "all")
 	COND(test_puts(), "puts", "part1", "all")

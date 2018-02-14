@@ -4,13 +4,14 @@ section .text
 _ft_strlen:
 	push rbp
 	mov rbp, rsp
-	cmp rdi, 0	
+	cmp rdi, 0		; check if str exists
 	je _end
-	mov rcx, 0x7FFFFFFFFFFFFFFF
-	xor al, al
-	cld
-	repnz scasb
-	mov rax, 0x7FFFFFFFFFFFFFFE
+	mov rcx, 0x7FFFFFFFFFFFFFFF ; set counter to max
+	xor al, al					; set accumulator to null
+	cld							; auto-increase mode
+	repnz scasb					; scan string until match with accumulator; decrease counter
+	mov rax, 0x7FFFFFFFFFFFFFFE ; set accumulator to max -1
 	sub rax, rcx
-_end:	leave
+_end:	
+	leave
 	ret

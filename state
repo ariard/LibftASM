@@ -8,8 +8,27 @@ TODO:
 	- read again pcasm good parts
 	- fonction bonus
 
+	- HARDENING project (bzero, strlen, strcat) :
+		- null ptr
+		- overflow character
+		- overflow attack on strcat
+
 
 QUEST ? 
 	- 10 func bonus ?
 		(ft_strjoin, ft_strcmp, ft_strstr, ft_strrev, ft_strchr)
 	- around func (section ? global ? leave ret ?)
+
+
+PART1 + PART2 ok 
+
+- how to protect 
+ 
+
+ LESSONS :
+ 	- does my input is valid
+
+QonA:
+	- faster to use rax when you can use ax ?
+	- how to test past a function ?
+	- how to crash a malloc
