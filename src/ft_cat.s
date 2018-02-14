@@ -1,4 +1,4 @@
-section .data
+ wction .data
 	len equ 100
 
 section .bss

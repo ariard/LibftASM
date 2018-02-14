@@ -22,11 +22,6 @@ void	test_bzero(void)
 	ft_bzero(a, 0);
 	printf(GREEN"bzero - 0 size\n"RESET);
 	
-
-	ft_bzero(a, -10);		
-	printf(GREEN"bzero - negative size\n"RESET); 
-
-
 	bzero(a, 16);
 	bzero(wit, 16);
 	strcpy(a, "hello world");
@@ -58,22 +53,6 @@ void	test_bzero(void)
 	if (i == 16)
 		printf(GREEN"bzero - simple test 2\n"RESET);
 
-
-	bzero(a, 16);
-	bzero(wit, 16);
-	strcpy(a, "hello world");
-	strcpy(wit, "hello world");
-	bzero(&wit[6], 20);
-	ft_bzero(&a[6], 20);
-	i = -1;
-	while (++i < 16)
-		if (a[i] != wit[i])
-		{
-			printf(RED"bzero - simple test 3\n"RESET);
-			break;
-		}
-	if (i == 16)
-		printf(GREEN"bzero - simple test 3\n"RESET);
 }
 
 void	test_strcat(void)
