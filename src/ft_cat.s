@@ -1,5 +1,7 @@
-section .data
-	len equ 100
+%define SIZE	128
+%define RD		0x2000000 | 3
+%define WR		0x2000000 | 4
+
 
 section .bss
 	buffer resd 100	
@@ -10,42 +12,30 @@ section .text
 	extern _printf
 
 _ft_cat:
-	cmp rdi, 0
+	push rbp
+	mov rbp, rsp
+	cmp edi, 0
 	jl _end
-	xor rax, rax
-	sub rsp, 0x60
-	mov qword [rbp - 0x8], rdi
+	sub rsp, 16
+	mov dword [rbp - 4], edi
 _read:
 	lea rdi, [rel buffer]
-	mov rsi, len
+	mov rsi, SIZE
 	call _ft_bzero
 	lea rsi, [rel buffer]
-	mov rdi, qword [rbp - 0x8]
-	mov rdx, len
-	mov rax, 0x2000000 | 3
+	mov edi, dword [rbp - 4]
+	mov rdx, SIZE
+	mov rax, RD
 	syscall	
-	cmp rax, -1
+	cmp eax, -1
 	je _end
-;	mov qword [rbp - 0x40], rax
-;	mov qword [rbp - 0x50], rsi
-;	lea rdi, [rel int_format]
-;	mov rsi, rax
-;	call _printf
-;	xor rax, rax
-;	mov rax, qword [rbp - 0x40]
-;	mov rsi, qword [rbp - 0x50]
-	mov qword [rbp - 0x20], rax
-	mov rdi, 1
-	mov rdx, rax
-	mov rax, 0x2000000 | 4
+	mov dword [rbp - 8], eax
+	mov edi, 1
+	mov edx, eax
+	mov rax, WR
 	syscall
-;	mov rax, qword [rbp - 0x20]
-;	lea rdi, [rel int_format2]
-;	mov rsi, rax
-;	call _printf
-	xor rax, rax
-	mov rax, qword [rbp - 0x20]
-	cmp rax, 0
+	mov eax, dword [rbp - 8]
+	cmp eax, 0
 	jg _read
 _end:
 	leave

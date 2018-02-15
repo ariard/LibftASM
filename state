@@ -32,3 +32,4 @@ QonA:
 	- faster to use rax when you can use ax ?
 	- how to test past a function ?
 	- how to crash a malloc
+	- clear register at beginning
