@@ -265,6 +265,7 @@ void	test_memcpy(void)
 	char	wit3[1000 + 1] = "hello ";
 	char	*b = "world!";
 	char	c[1000 + 1];
+	char	*d;
 	int	i;
 
 	ft_memcpy(NULL, NULL, 10);	
@@ -324,26 +325,43 @@ void	test_memcpy(void)
 		}
 	if (i == 1000)
 		printf(GREEN"memcpy - simple test 3\n"RESET);
+
+	bzero(test, 1000);
+	memset(&test[500], 'A', 500);
+	memcpy(wit, test, 1000);
+	bzero(test, 1000);
+	memset(&test[500], 'A', 500);
+	d = ft_memcpy(buf, test, 1000);
+	i = -1;
+	while (++i < 1000)
+		if (d[i] != wit[i])
+		{
+			printf(RED"memcpy - simple test 4\n"RESET);
+			break; 
+		}
+	if (i == 1000)
+		printf(GREEN"memcpy - simple test 4\n"RESET);
 }
 
 void	test_strdup(void)
 {
-	char	*a;
 	char	*b = "hello world";
+	char	*d;
 	char	c[20];
 	int	i;
 
-	printf("%s\n", c);
-	exit(0);
+	ft_strdup(NULL);
+
+	d = strdup(b);
 	i = -1;
-//	while (++i < 11)
-//		if (a[i] != b[i])
-//		{
-//			printf(RED"strdup - simple test\n"RESET);
-//			break;
-//		}
-//	if (i == 11)
-//		printf(GREEN"strdup - simple test\n"RESET);
+	while (++i < 11)
+		if (d[i] != b[i])
+		{
+			printf(RED"strdup - simple test\n"RESET);
+			break;
+		}
+	if (i == 11)
+		printf(GREEN"strdup - simple test\n"RESET);
 }
 
 void	test_memset(void)

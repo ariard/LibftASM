@@ -16,10 +16,12 @@ _ft_strdup:
 	mov qword [rbp - 0x10], rax
 	mov rdi, qword rax
 	call _malloc
-	mov rdi, rax
+	mov qword [rbp - 0x18], rax
+	mov rdi, qword rax
 	mov rsi, qword [rbp - 0x8]
 	mov rdx, qword [rbp - 0x10]
 	call _ft_memcpy
-_end:	
+	mov rax, qword [rbp -0x18]
+_end:
 	leave
 	ret
