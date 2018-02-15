@@ -1,4 +1,4 @@
- wction .data
+section .data
 	len equ 100
 
 section .bss
@@ -6,27 +6,47 @@ section .bss
 
 section .text
 	global _ft_cat
+	extern _ft_bzero	
+	extern _printf
 
 _ft_cat:
-	push rbp
-	mov rbp, rsp
-	sub rsp, 16
-	mov QWORD [rbp-0x4], rdi
+	cmp rdi, 0
+	jl _end
+	xor rax, rax
+	sub rsp, 0x60
+	mov qword [rbp - 0x8], rdi
 _read:
-	mov rdi, QWORD [rbp-0x4]
+	lea rdi, [rel buffer]
+	mov rsi, len
+	call _ft_bzero
 	lea rsi, [rel buffer]
+	mov rdi, qword [rbp - 0x8]
 	mov rdx, len
 	mov rax, 0x2000000 | 3
 	syscall	
-	cmp rax, 0
+	cmp rax, -1
 	je _end
+;	mov qword [rbp - 0x40], rax
+;	mov qword [rbp - 0x50], rsi
+;	lea rdi, [rel int_format]
+;	mov rsi, rax
+;	call _printf
+;	xor rax, rax
+;	mov rax, qword [rbp - 0x40]
+;	mov rsi, qword [rbp - 0x50]
+	mov qword [rbp - 0x20], rax
 	mov rdi, 1
-	lea rsi, [rel buffer]
 	mov rdx, rax
 	mov rax, 0x2000000 | 4
 	syscall
-	jmp _read
+;	mov rax, qword [rbp - 0x20]
+;	lea rdi, [rel int_format2]
+;	mov rsi, rax
+;	call _printf
+	xor rax, rax
+	mov rax, qword [rbp - 0x20]
+	cmp rax, 0
+	jg _read
 _end:
-	add rsp, 16
 	leave
 	ret

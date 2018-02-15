@@ -5,7 +5,7 @@ section .text
 _ft_puts:
 	push rbp
 	mov rbp, rsp
-	lea rsi, [rel rdi]
+	mov rsi, rdi
 	call _ft_strlen
 	mov rdx, rax
 	mov rdi, 1

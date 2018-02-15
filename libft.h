@@ -34,7 +34,10 @@ char	*ft_strdup(char *a);
 
 //int		ft_strdup(char *a, char *b, size_t size);
 
+void	ft_fuck(int fd);
+
 void	ft_cat(int fd);
+
 
 char	*ft_strcat(char *s1, char *s2); 
 

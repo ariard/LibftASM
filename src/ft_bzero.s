@@ -14,5 +14,6 @@ _loop:
 	dec rsi				; decrease ptr
 	jnz _loop
 _end:
+	xor rax, rax
 	leave
 	ret
