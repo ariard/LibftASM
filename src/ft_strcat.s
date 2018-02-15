@@ -23,8 +23,6 @@ _ft_strcat:
 	mov rsi, qword [rbp - 0x10]
 	mov rdx, rax
 	call _ft_memcpy
-	add rax, 0x1 
-	mov byte [rax], 0x0
 _end:
 	leave
 	ret

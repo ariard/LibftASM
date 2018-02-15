@@ -20,6 +20,9 @@ void	ft_bzero(void *s, size_t n)
 		return;
 	i = -1;
 	while (++i < n)
-		if (*(char *)s)
-				*(char *)s++ = 0;
+	{
+		if (!*(char *)s)
+			break;
+		*(char *)s++ = 0;
+	}
 }

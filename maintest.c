@@ -66,22 +66,21 @@ void	test_strcat(void)
 	char	c[1000];
 	int	i;
 
-//	ft_strcat(NULL, NULL);	
+	ft_strcat(NULL, NULL);	
 	printf(GREEN"strcat - NULL str\n"RESET);
 
 
-//	strcat(wit, b);
-//	ft_strcat(test, b);
-//	i = -1;
-//	while (++i < 16)
-//		if (test[i] != wit[i])
-//		{
-//			printf(RED"strcat - simple test\n"RESET);
-//			break;
-//		}
-//	if (i == 16)
-//		printf(GREEN"strcat - simple test\n"RESET);
-
+	strcat(wit, b);
+	ft_strcat(test, b);
+	i = -1;
+	while (++i < 16)
+		if (test[i] != wit[i])
+		{
+			printf(RED"strcat - simple test\n"RESET);
+			break;
+		}
+	if (i == 16)
+		printf(GREEN"strcat - simple test\n"RESET);
 
 //	strcat(wit2, b);
 //	ft_strcat(test2, b);
@@ -97,9 +96,9 @@ void	test_strcat(void)
 
 	memset(wit3, 0, 1000);
 	memset(c, 'A', 1000);
-//	strcat(wit3, c);
+	strcat(wit3, c);
 	memset(c, 'A', 1000);
-//	ft_strcat(test3, c);
+	ft_strcat(test3, c);
 	i = -1;
 	while (++i < 1000)
 		if (test3[i] != wit3[i])
@@ -109,7 +108,6 @@ void	test_strcat(void)
 		}
 	if (i == 1000)
 		printf(GREEN"strcat - fat s2\n"RESET);
-
 }
 
 void	test_isalpha(void)
@@ -256,11 +254,6 @@ void	test_strlen(void)
 
 # define COND(w, x, y, z)		if (!strcmp(argv[1], x) || !strcmp(argv[1], y) || !strcmp(argv[1], z)) { w; }
 
-void	test_memset(void)
-{
-	;
-}
-
 void	test_memcpy(void)
 {
 	char	test[1000 + 1];
@@ -335,7 +328,56 @@ void	test_memcpy(void)
 
 void	test_strdup(void)
 {
-	;
+	char	*a;
+	char	*b = "hello world";
+	char	c[20];
+	int	i;
+
+	printf("%s\n", c);
+	exit(0);
+	i = -1;
+//	while (++i < 11)
+//		if (a[i] != b[i])
+//		{
+//			printf(RED"strdup - simple test\n"RESET);
+//			break;
+//		}
+//	if (i == 11)
+//		printf(GREEN"strdup - simple test\n"RESET);
+}
+
+void	test_memset(void)
+{
+	char	test[20];
+	char	wit[20];
+	int	i;
+
+	ft_memset(NULL, 0, 0);
+	printf(GREEN"memset - NULL str\n"RESET);
+
+	memset(wit, 'A', 20);
+	ft_memset(test, 'A', 20);
+	i = -1;
+	while (++i < 20)
+		if (test[i] != wit[i])
+		{
+			printf(RED"memset - simple test\n"RESET);
+			break;
+		}
+	if (i == 20)
+		printf(GREEN"memset - simple test\n"RESET);
+
+	memset(wit, 'B', 0);
+	ft_memset(test, 'B', 0);
+	i = -1;
+	while (++i < 20)
+		if (test[i] != wit[i])
+		{
+			printf(RED"memset - 0 size\n"RESET);
+			break;
+		}
+	if (i == 20)
+		printf(GREEN"memset - 0 size\n"RESET);
 }
 
 int	main(int argc, char **argv)

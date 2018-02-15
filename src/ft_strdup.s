@@ -7,18 +7,19 @@ section .text
 _ft_strdup:
 	push rbp
 	mov rbp, rsp
-	push r12
-	push r13
-	mov r12, rdi
+	cmp rdi, 0
+	je _end
+	sub rsp, 0x20
+	mov qword [rbp - 0x8], rdi
 	call _ft_strlen
-	mov r13, rax
-	mov rdi, r13
+	add rax, 0x1
+	mov qword [rbp - 0x10], rax
+	mov rdi, qword rax
 	call _malloc
 	mov rdi, rax
-	mov rsi, r12
-	mov rdx, r13
+	mov rsi, qword [rbp - 0x8]
+	mov rdx, qword [rbp - 0x10]
 	call _ft_memcpy
-	pop r13
-	pop r12
+_end:	
 	leave
 	ret
