@@ -28,6 +28,7 @@ ft_memset.s\
 ft_memcpy.s\
 ft_strdup.s\
 ft_cat.s\
+ft_strcmp.s\
 
 
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_BASE))
