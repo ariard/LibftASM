@@ -21,7 +21,7 @@ _ft_strcat:
 	call _ft_strlen
 	mov rdi, qword [rbp - 0x8]
 	mov rsi, qword [rbp - 0x10]
-	mov rdx, rax
+	mov rdx, rax 	; beware NULL char
 	call _ft_memcpy
 _end:
 	leave

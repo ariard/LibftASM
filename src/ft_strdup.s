@@ -20,7 +20,7 @@ _ft_strdup:
 	mov rdi, qword rax
 	mov rsi, qword [rbp - 0x8]
 	mov rdx, qword [rbp - 0x10]
-	call _ft_memcpy
+	call _ft_memcpy 			; beware NULL char
 	mov rax, qword [rbp -0x18]
 _end:
 	leave
