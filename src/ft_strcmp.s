@@ -19,7 +19,6 @@ _ft_strcmp:
 	je _end
 	mov qword [rbp - 8], rdi
 	mov qword [rbp - 16], rsi
-	xor rax, rax
 	call _ft_strlen
 	mov dword [rbp - 20], eax
 	mov rdi, qword [rbp - 16]
@@ -45,4 +44,3 @@ _cmp:
 _end:
 	leave
 	ret
-

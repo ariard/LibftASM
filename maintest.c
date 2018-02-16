@@ -398,6 +398,35 @@ void	test_memset(void)
 		printf(GREEN"memset - 0 size\n"RESET);
 }
 
+void	test_strcmp(void)
+{
+	ft_strcmp(NULL, "a");
+	printf(GREEN"strcmp - NULL s1\n");
+
+	ft_strcmp("b", NULL);
+	printf(GREEN"strcmp - NULL s2\n");
+
+	if (ft_strcmp("hello", "world") == strcmp("hello", "world"))	
+		printf(GREEN"strcmp - simple test\n"RESET);
+	else
+		printf(RED"strcmp - simple test\n"RESET);
+
+	if (ft_strcmp("world", "hello") == strcmp("world", "hello"))	
+		printf(GREEN"strcmp - simple test 2\n"RESET);
+	else
+		printf(RED"strcmp - simple test 2\n"RESET);
+
+	if (ft_strcmp("hello", "hello") == strcmp("hello", "hello"))	
+		printf(GREEN"strcmp - equal test\n"RESET);
+	else
+		printf(RED"strcmp - equal test\n"RESET);
+
+	if (ft_strcmp("", "") == strcmp("", ""))	
+		printf(GREEN"strcmp - equal test 2\n"RESET);
+	else
+		printf(RED"strcmp - equal test 2\n"RESET);
+}
+
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
@@ -417,5 +446,6 @@ int	main(int argc, char **argv)
 	COND(test_memset(), "memset", "part2", "all")
 	COND(test_memcpy(), "memcpy", "part2", "all")
 	COND(test_strdup(), "strdup", "part2", "all")
+	COND(test_strcmp(), "strcmp", "bonus", "all")
 	return (0);
 }
