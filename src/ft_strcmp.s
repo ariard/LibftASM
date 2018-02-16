@@ -41,9 +41,8 @@ _cmp:
 	xor rax, rax
 	mov al, byte [rdi]
 	sub al, byte [rsi]
+	movsx eax, al
 _end:
 	leave
 	ret
 
-
-; test if diff, test if next exist, advance one, repeat
