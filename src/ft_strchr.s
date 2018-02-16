@@ -1,7 +1,7 @@
 %define MAX 	0x7FFFFFFFFFFFFFFF 
 
 section .text
-	extern _ft_strchr
+	global _ft_strchr
 
 _ft_strchr:
 	push rbp

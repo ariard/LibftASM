@@ -43,6 +43,8 @@ char	*ft_strstr(char *s1, char *s2);
 
 char	ft_strchr(char *s1, int c);
 
+//int 	ft_strrev(char *s1);
+
 char 	*ft_strrev(char *s1);
 
 #endif

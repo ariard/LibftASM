@@ -7,6 +7,26 @@
 
 #include "libft.h"
 
+char	*strrev(char *str)
+{
+	int		len;
+	char	tmp;
+	int		i;
+
+	i = 0;
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	while (i < len / 2)
+	{
+		tmp = str[len - (i + 1)];
+		str[len - (i + 1)] = str[i];
+		str[i] = tmp;
+		i++;
+	}
+	return (str);
+}
+
 void	test_bzero(void)
 {
 	char	a[16 + 1];
@@ -427,6 +447,53 @@ void	test_strcmp(void)
 		printf(RED"strcmp - equal test 2\n"RESET);
 }
 
+void	test_strrev(void)
+{
+	char	*a;
+
+	ft_strrev(NULL);
+	printf(GREEN"strrev - NULL s1\n");
+
+	ft_strrev("");
+	printf(GREEN"strrev - 0 s1\n");
+
+	a = ft_strrev("hello");
+	printf("%s\n", a);
+	return ;
+	if (strcmp(ft_strrev("hello"), strrev("hello")))
+		printf(GREEN"strrev - simple test\n"RESET);
+	else
+		printf(RED"strrev - simple test\n"RESET);
+	return ;
+
+	return ;
+
+	if (ft_strrev("kayak") == strrev("kayak"))
+		printf(GREEN"strrev - simple test 2\n"RESET);
+	else
+		printf(RED"strrev - simple test 2\n"RESET);
+
+	if (ft_strrev("aaaaaa") == strrev("aaaaaa"))
+		printf(GREEN"strrev - simple test 2\n"RESET);
+	else
+		printf(RED"strrev - simple test 2\n"RESET);
+}
+
+void	test_strstr(void)
+{
+	;
+}
+
+void	test_strchr(void)
+{
+	;
+}
+
+void	test_strjoin(void)
+{
+	;
+}
+	
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
@@ -447,5 +514,9 @@ int	main(int argc, char **argv)
 	COND(test_memcpy(), "memcpy", "part2", "all")
 	COND(test_strdup(), "strdup", "part2", "all")
 	COND(test_strcmp(), "strcmp", "bonus", "all")
+	COND(test_strrev(), "strrev", "bonus", "all")
+	COND(test_strstr(), "strstr", "bonus", "all")
+	COND(test_strchr(), "strchr", "bonus", "all")
+	COND(test_strjoin(), "strjoin", "bonus", "all")
 	return (0);
 }

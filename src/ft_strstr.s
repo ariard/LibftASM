@@ -1,5 +1,7 @@
 section .text
 	global _ft_strstr
+	extern _ft_strchr
+	extern _ft_strcmp
 
 _ft_strstr:
 	push rbp
@@ -13,8 +15,8 @@ _ft_strstr:
 	mov qword [rbp - 16], rsi
 	xor esi, esi
 _loop:
-	mov si, byte [rsi]
-	call _ftstrchr
+	mov sil, byte [rsi]
+	call _ft_strchr
 	cmp rax, 0
 	je _null_needle
 	mov qword [rbp - 24], rax
