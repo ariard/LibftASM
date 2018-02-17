@@ -12,26 +12,25 @@ _ft_strrev:
 	mov rbp, rsp	
 	cmp rdi, 0
 	je _end
-	sub rsp, 9
+	sub rsp, 20
 	mov qword [rbp - 8], rdi
 	call _ft_strlen
 	cmp eax, 0
 	je _null
+	dec eax
 	mov rsi, qword [rbp - 8]
-	add rsi, rax
-	dec rsi
 	mov rdi, qword [rbp - 8]
+	mov dword [rbp - 16], eax
+	mov dword [rbp - 20], 0
 _loop:
-	cmp rdi, rsi
+	cmp rax, 0
 	je _string
-	xor rax, rax
-	mov dil, byte [rsi]
-	jmp _end2
-	mov byte [rdi], al
-	mov byte [rdi], ah
-	inc rdi
-	dec rsi
-	jmp _loop
+	movsxd rdi, dword [rbp - 16]
+	mov rax, qword [rbp - 8]
+	mov cl, byte [rax + rdi]
+	mov rdi, qword [rbp - 8]
+	mov byte [rdi], cl  		; try with load b ?
+	jmp _string			; litteraly hijack
 _string:
 	mov rax, qword [rbp - 8]
 	jmp _end
@@ -41,6 +40,6 @@ _end:
 	leave
 	ret
 _end2:
-	mov rax, rdi
+	mov al, cl
 	leave 
 	ret
