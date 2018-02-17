@@ -1,37 +1,53 @@
 section .text
 	global _ft_strstr
-	extern _ft_strchr
-	extern _ft_strcmp
+	extern _ft_strlen
 
 _ft_strstr:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 24
+	sub rsp, 32
 	cmp rdi, 0
-	je _end
+	je _null
 	cmp rsi, 0
-	je _back_needle
+	je _null
+	cmp byte [rsi], 0
+	je _back_hay
+	cmp byte [rdi], 0
+	je _null
 	mov qword [rbp - 8], rdi
 	mov qword [rbp - 16], rsi
-	xor esi, esi
-_loop:
-	mov sil, byte [rsi]
-	call _ft_strchr
-	cmp rax, 0
-	je _null_needle
+	mov rdi, qword [rbp - 16]
+	call _ft_strlen
 	mov qword [rbp - 24], rax
-	mov rdi, rax	
+	mov rdi, qword [rbp - 8]
+_main_loop:
 	mov rsi, qword [rbp - 16]
-	call _ft_strcmp	
-	cmp rax, 0
-	jne _loop
-	mov rax, qword [rbp - 24]
-	jmp _end
-_null_needle:
+	mov al, byte [rsi]
+	cmp byte [rdi], al
+	je _cmp
+	inc rdi
+	dec rcx
+	jmp _main_loop	
+_cmp:
+	mov qword [rbp - 32], rdi
+	mov rcx, qword [rbp - 24]
+	cld
+	repe cmpsb
+	dec rdi,
+	dec rsi
+	mov al, byte [rsi]  ; cmp rdi-sring ref vs rsi-substring
+	cmp byte [rdi], al
+	je _back_nee
+_goto:
+	jmp _main_loop
+_null:
 	xor rax, rax
 	jmp _end
-_back_needle:
-	mov rax, rsi
+_back_hay:
+	mov rax, rdi
+	jmp _end
+_back_nee:
+	mov rax, qword [rbp - 32]
 _end:
 	leave
 	ret

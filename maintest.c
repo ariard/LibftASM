@@ -489,7 +489,60 @@ void	test_strrev(void)
 
 void	test_strstr(void)
 {
-	;
+	char	*a;
+	char	*b;
+	int		c;
+
+	ft_strstr(NULL, "needle");
+	printf(GREEN"strstr - NULL ptr\n");
+
+	ft_strstr("haystack", NULL);
+	printf(GREEN"strstr - NULL ptr2\n");
+	
+	ft_strstr("", "needle");
+	printf(GREEN"strstr - 0 ptr\n");
+
+	ft_strstr("haystack", "");
+	printf(GREEN"strstr - 0 ptr\n");
+
+	a = ft_strstr("", "");
+	b = strstr("", "");
+	if (a && b)
+	{
+		if (!(strcmp(a, b)))
+			printf(GREEN"strstr - simple test\n"RESET);
+		else
+			printf(RED"strstr - simple test\n"RESET);
+	}
+	else if (a == b)
+		printf(GREEN"strstr - simple test\n"RESET);
+
+	if (!strcmp(ft_strstr("abcdef", "ef"), strstr("abcdef", "ef")))
+		printf(GREEN"strstr - simple test 2\n"RESET);
+	else
+		printf(RED"strstr - simple test 2\n"RESET);
+
+	if (!strcmp(ft_strstr("abcdefabcdefg", "efg"), strstr("abcdefabcdefg", "efg")))
+		printf(GREEN"strstr - simple test 3\n"RESET);
+	else
+		printf(RED"strstr - simple test 3\n"RESET);
+
+	a = ft_strstr("abcdefabcdefg", "xyz");
+	b = ft_strstr("abcdefabcdefg", "xyz");
+	if (a && b)
+	{
+		if (!strcmp(a, b))
+			printf(GREEN"strstr - simple test 4\n"RESET);
+		else
+			printf(RED"strstr - simple test 4\n"RESET);
+	}
+	else if (a == b)
+		printf(GREEN"strstr - simple test 4\n"RESET);
+
+	if (!strcmp(ft_strstr("abcdefabcdefg", "e"), strstr("abcdefabcdefg", "e")))
+		printf(GREEN"strstr - simple test 5\n"RESET);
+	else
+		printf(RED"strstr - simple test 5\n"RESET);
 }
 
 void	test_strchr(void)
@@ -505,8 +558,6 @@ void	test_strchr(void)
 	ft_strchr("", 20);
 	printf(GREEN"strchr - 0 s1\n");
 
-	a = ft_strchr("abc", 0);
-	b = strchr("abc", 0);
 	if (!strcmp(ft_strchr("abc", 0), strchr("abc", 0)))
 		printf(GREEN"strchr - simple test\n"RESET);
 	else
