@@ -33,6 +33,7 @@ ft_strchr.s\
 ft_strstr.s\
 ft_strrev.s\
 ft_strjoin.s\
+ft_test.s\
 
 
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_BASE))

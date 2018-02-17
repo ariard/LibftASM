@@ -9,19 +9,21 @@ _ft_strdup:
 	mov rbp, rsp
 	cmp rdi, 0
 	je _end
-	sub rsp, 0x20
-	mov qword [rbp - 0x8], rdi
+	sub rsp, 24
+	mov qword [rbp - 8], rdi
 	call _ft_strlen
-	add rax, 0x1
-	mov qword [rbp - 0x10], rax
+	add rax, 1
+	mov qword [rbp - 16], rax
 	mov rdi, qword rax
 	call _malloc
-	mov qword [rbp - 0x18], rax
+	leave
+	ret
+	mov qword [rbp - 24], rax
 	mov rdi, qword rax
-	mov rsi, qword [rbp - 0x8]
-	mov rdx, qword [rbp - 0x10]
+	mov rsi, qword [rbp - 8]
+	mov rdx, qword [rbp - 16]
 	call _ft_memcpy 			; beware NULL char
-	mov rax, qword [rbp -0x18]
+	mov rax, qword [rbp - 24]
 _end:
 	leave
 	ret

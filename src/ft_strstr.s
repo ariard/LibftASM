@@ -38,8 +38,6 @@ _cmp:
 	mov al, byte [rsi]  ; cmp rdi-sring ref vs rsi-substring
 	cmp byte [rdi], al
 	je _back_nee
-_goto:
-	jmp _main_loop
 _null:
 	xor rax, rax
 	jmp _end

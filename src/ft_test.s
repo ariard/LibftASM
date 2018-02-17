@@ -1,21 +1,15 @@
-section .data
-hello:
-	.string db "Hello World!", 10
-	.len equ $ - hello.string
-
 section .text
 	global _ft_test
+	extern _malloc
 
 _ft_test:
 	push rbp
 	mov rbp, rsp
-	mov eax, 0x0
-	cmp edi, 0x61
-	jl _end
-	cmp edi, 0x7a
-	jg _end
-	sub edi, 0x20 
-	mov eax, edi
+	sub rsp, 24
+	add rsp, 24
+	mov rdi, 20
+	call _malloc
+
 _end:
 	leave
 	ret

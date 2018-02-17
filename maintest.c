@@ -370,18 +370,23 @@ void	test_strdup(void)
 	char	c[20];
 	int	i;
 
+	ft_test("hello");
+	return;
 	ft_strdup(NULL);
 
-	d = strdup(b);
-	i = -1;
-	while (++i < 11)
-		if (d[i] != b[i])
-		{
-			printf(RED"strdup - simple test\n"RESET);
-			break;
-		}
-	if (i == 11)
-		printf(GREEN"strdup - simple test\n"RESET);
+//	d = strdup(b);
+//	i = -1;
+//	while (++i < 11)
+//		if (d[i] != b[i])
+//		{
+//			printf(RED"strdup - simple test\n"RESET);
+//			break;
+//		}
+//	if (i == 11)
+//		printf(GREEN"strdup - simple test\n"RESET);
+
+	ft_strdup("hello");
+//	printf(GREEN"strdup - simple test 2\n"RESET);
 }
 
 void	test_memset(void)
@@ -549,8 +554,6 @@ void	test_strchr(void)
 {
 	char	*a;
 	char	*b;
-	char	*c;
-//	int		d;
 
 	ft_strchr(NULL, 20);
 	printf(GREEN"strchr - NULL ptr\n");
@@ -590,7 +593,7 @@ void	test_strchr(void)
 
 void	test_strjoin(void)
 {
-	;
+	printf("%s\n", ft_strjoin("hello", "world"));
 }
 	
 int	main(int argc, char **argv)
