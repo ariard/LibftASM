@@ -1,11 +1,8 @@
 section .data
-	int_format: db "int is %d", 0
-	flag: db "flag", 0
 
 section .text
 	global _ft_strrev
 	extern _ft_strlen
-	extern _printf
 
 _ft_strrev:
 	push rbp
@@ -21,7 +18,6 @@ _ft_strrev:
 	mov rsi, qword [rbp - 8]
 	add rsi, rax
 	mov rdi, qword [rbp - 8]
-	mov ch, 2
 _loop:
 	mov al, byte [rsi]
 	mov cl, byte [rdi]

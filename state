@@ -3,9 +3,6 @@ NOW:
 	- maintest
 
 TODO: 
-	- redo all functions in proper style then test again main
-	- write main test lacks
-	- read again pcasm good parts
 	- fonction bonus
 
 	- HARDENING project (bzero, strlen, strcat) :
@@ -13,20 +10,12 @@ TODO:
 		- overflow character
 		- overflow attack on strcat
 
+	- test return value of all functions
 
-QUEST ? 
-	- 10 func bonus ?
-		(ft_strjoin, ft_strcmp, ft_strstr, ft_strrev, ft_strchr)
-	- around func (section ? global ? leave ret ?)
-
-
-PART1 + PART2 ok 
-
-- how to protect 
- 
 
  LESSONS :
  	- does my input is valid
+	- test our own fucking test
 
 QonA:
 	- faster to use rax when you can use ax ?

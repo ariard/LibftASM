@@ -494,7 +494,47 @@ void	test_strstr(void)
 
 void	test_strchr(void)
 {
-	;
+	char	*a;
+	char	*b;
+	char	*c;
+//	int		d;
+
+	ft_strchr(NULL, 20);
+	printf(GREEN"strchr - NULL ptr\n");
+
+	ft_strchr("", 20);
+	printf(GREEN"strchr - 0 s1\n");
+
+	a = ft_strchr("abc", 0);
+	b = strchr("abc", 0);
+	if (!strcmp(ft_strchr("abc", 0), strchr("abc", 0)))
+		printf(GREEN"strchr - simple test\n"RESET);
+	else
+		printf(RED"strchr - simple test\n"RESET);
+
+	if (!strcmp(ft_strchr("abcdefghijlmno", 109), strchr("abcdefghijlmno", 109)))
+		printf(GREEN"strchr - simple test 2\n"RESET);
+	else
+		printf(RED"strchr - simple test 2\n"RESET);
+
+	a = strchr("abcdefghijlmno", 120);
+	b  = ft_strchr("abcdefghijlmno", 120);
+	if (a && b)
+	{
+		if (!strcmp(ft_strchr("abcdefghijlmno", 120), strchr("abcdefghijlmno", 120)))
+			printf(GREEN"strchr - simple test 3\n"RESET);
+		else
+			printf(RED"strchr - simple test 3\n"RESET);
+	}
+	else if (a == b)
+		printf(GREEN"strchr - simple test 3\n"RESET);
+
+
+	if (!strcmp(ft_strchr("a", 97), strchr("a", 97)))
+		printf(GREEN"strchr - simple test 4\n"RESET);
+	else
+		printf(RED"strchr - simple test 4\n"RESET);
+	
 }
 
 void	test_strjoin(void)
