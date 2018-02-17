@@ -450,6 +450,8 @@ void	test_strcmp(void)
 void	test_strrev(void)
 {
 	char	*a;
+	char	s1[20];
+	char	s2[20];
 
 	ft_strrev(NULL);
 	printf(GREEN"strrev - NULL s1\n");
@@ -457,26 +459,32 @@ void	test_strrev(void)
 	ft_strrev("");
 	printf(GREEN"strrev - 0 s1\n");
 
-	a = ft_strrev("hello");
-	printf("%s\n", a);
-	return ;
-	if (strcmp(ft_strrev("hello"), strrev("hello")))
+	bzero(s1, 20);
+	strcpy(s1, "hello world");
+	bzero(s2, 20);
+	strcpy(s2, "hello world");
+	if (!strcmp(ft_strrev(s1), strrev(s2)))
 		printf(GREEN"strrev - simple test\n"RESET);
 	else
 		printf(RED"strrev - simple test\n"RESET);
-	return ;
 
-	return ;
-
-	if (ft_strrev("kayak") == strrev("kayak"))
+	bzero(s1, 20);
+	strcpy(s1, "kayak");
+	bzero(s2, 20);
+	strcpy(s2, "kayak");
+	if (!strcmp(ft_strrev(s1), strrev(s2)))
 		printf(GREEN"strrev - simple test 2\n"RESET);
 	else
 		printf(RED"strrev - simple test 2\n"RESET);
-
-	if (ft_strrev("aaaaaa") == strrev("aaaaaa"))
-		printf(GREEN"strrev - simple test 2\n"RESET);
+	
+	memset(s1, 'A', 20);
+	s1[19] = 0;
+	memset(s2, 'A', 20);
+	s2[19] = 0;
+	if (!strcmp(ft_strrev(s1), strrev(s2)))
+		printf(GREEN"strrev - simple test 3\n"RESET);
 	else
-		printf(RED"strrev - simple test 2\n"RESET);
+		printf(RED"strrev - simple test 3\n"RESET);
 }
 
 void	test_strstr(void)
