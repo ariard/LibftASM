@@ -612,33 +612,63 @@ void	test_memset(void)
 	}
 }
 
+/*
+ * BONUS
+*/
+
 void	test_strcmp(void)
 {
 	ft_strcmp(NULL, "a");
 	printf(GREEN"strcmp - NULL s1\n");
+	T(1)
 
 	ft_strcmp("b", NULL);
 	printf(GREEN"strcmp - NULL s2\n");
+	T(1)
 
 	if (ft_strcmp("hello", "world") == strcmp("hello", "world"))	
+	{
 		printf(GREEN"strcmp - simple test\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strcmp - simple test\n"RESET);
+		T(0)
+	}
 
 	if (ft_strcmp("world", "hello") == strcmp("world", "hello"))	
+	{
 		printf(GREEN"strcmp - simple test 2\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strcmp - simple test 2\n"RESET);
+		T(0)
+	}
 
 	if (ft_strcmp("hello", "hello") == strcmp("hello", "hello"))	
+	{
 		printf(GREEN"strcmp - equal test\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strcmp - equal test\n"RESET);
+		T(0)
+	}
 
 	if (ft_strcmp("", "") == strcmp("", ""))	
+	{
 		printf(GREEN"strcmp - equal test 2\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strcmp - equal test 2\n"RESET);
+		T(0)
+	}
 }
 
 void	test_strrev(void)
@@ -648,36 +678,56 @@ void	test_strrev(void)
 
 	ft_strrev(NULL);
 	printf(GREEN"strrev - NULL s1\n");
+	T(1)
 
 	ft_strrev("");
 	printf(GREEN"strrev - 0 s1\n");
+	T(1)
 
 	bzero(s1, 20);
 	strcpy(s1, "hello world");
 	bzero(s2, 20);
 	strcpy(s2, "hello world");
 	if (!strcmp(ft_strrev(s1), strrev(s2)))
+	{
 		printf(GREEN"strrev - simple test\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strrev - simple test\n"RESET);
+		T(0)
+	}
 
 	bzero(s1, 20);
 	strcpy(s1, "kayak");
 	bzero(s2, 20);
 	strcpy(s2, "kayak");
 	if (!strcmp(ft_strrev(s1), strrev(s2)))
+	{
 		printf(GREEN"strrev - simple test 2\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strrev - simple test 2\n"RESET);
+		T(1)
+	}
 	
 	memset(s1, 'A', 20);
 	s1[19] = 0;
 	memset(s2, 'A', 20);
 	s2[19] = 0;
 	if (!strcmp(ft_strrev(s1), strrev(s2)))
+	{
 		printf(GREEN"strrev - simple test 3\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strrev - simple test 3\n"RESET);
+		T(0)
+	}
 }
 
 void	test_strstr(void)
@@ -687,54 +737,105 @@ void	test_strstr(void)
 
 	ft_strstr(NULL, "needle");
 	printf(GREEN"strstr - NULL ptr\n");
+	T(1)
 
 	ft_strstr("haystack", NULL);
 	printf(GREEN"strstr - NULL ptr2\n");
+	T(1)
 	
 	ft_strstr("", "needle");
 	printf(GREEN"strstr - 0 ptr\n");
+	T(1)
 
 	ft_strstr("haystack", "");
 	printf(GREEN"strstr - 0 ptr\n");
+	T(1)
 
 	a = ft_strstr("", "");
 	b = strstr("", "");
 	if (a && b)
 	{
 		if (!(strcmp(a, b)))
+		{
 			printf(GREEN"strstr - simple test\n"RESET);
+			T(1)
+		}
 		else
+		{
 			printf(RED"strstr - simple test\n"RESET);
+			T(0) 
+		}
 	}
 	else if (a == b)
+	{
 		printf(GREEN"strstr - simple test\n"RESET);
+		T(1)
+	}
 
 	if (!strcmp(ft_strstr("abcdef", "ef"), strstr("abcdef", "ef")))
+	{
+		T(1)
 		printf(GREEN"strstr - simple test 2\n"RESET);
+	}
 	else
+	{
 		printf(RED"strstr - simple test 2\n"RESET);
+		T(0)
+	}
 
 	if (!strcmp(ft_strstr("abcdefabcdefg", "efg"), strstr("abcdefabcdefg", "efg")))
+	{
 		printf(GREEN"strstr - simple test 3\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strstr - simple test 3\n"RESET);
+		T(0)
+	}
 
 	a = ft_strstr("abcdefabcdefg", "xyz");
 	b = ft_strstr("abcdefabcdefg", "xyz");
 	if (a && b)
 	{
 		if (!strcmp(a, b))
+		{
 			printf(GREEN"strstr - simple test 4\n"RESET);
+			T(1)
+		}
 		else
+		{
 			printf(RED"strstr - simple test 4\n"RESET);
+			T(0)
+		}
 	}
 	else if (a == b)
+	{
 		printf(GREEN"strstr - simple test 4\n"RESET);
+		T(1)
+	}
 
 	if (!strcmp(ft_strstr("abcdefabcdefg", "e"), strstr("abcdefabcdefg", "e")))
+	{
 		printf(GREEN"strstr - simple test 5\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strstr - simple test 5\n"RESET);
+		T(0)
+	}
+
+	if (!strcmp(ft_strstr("abcdefabcdefefgabcd", "efg"), strstr("abcdefabcdefefgabcd", "efg")))
+	{
+		printf(GREEN"strstr - simple test 6\n"RESET);
+		T(1)
+	}
+	else
+	{
+		printf(RED"strstr - simple test 6\n"RESET);
+		T(0)
+	}
 }
 
 void	test_strchr(void)
@@ -744,36 +845,65 @@ void	test_strchr(void)
 
 	ft_strchr(NULL, 20);
 	printf(GREEN"strchr - NULL ptr\n");
+	T(1)
 
 	ft_strchr("", 20);
 	printf(GREEN"strchr - 0 s1\n");
+	T(1)
 
 	if (!strcmp(ft_strchr("abc", 0), strchr("abc", 0)))
+	{
 		printf(GREEN"strchr - simple test\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strchr - simple test\n"RESET);
+		T(0)
+	}
 
 	if (!strcmp(ft_strchr("abcdefghijlmno", 109), strchr("abcdefghijlmno", 109)))
+	{
 		printf(GREEN"strchr - simple test 2\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strchr - simple test 2\n"RESET);
+		T(0)
+	}
 
 	a = strchr("abcdefghijlmno", 120);
 	b  = ft_strchr("abcdefghijlmno", 120);
 	if (a && b)
 	{
 		if (!strcmp(ft_strchr("abcdefghijlmno", 120), strchr("abcdefghijlmno", 120)))
+		{
 			printf(GREEN"strchr - simple test 3\n"RESET);
+			T(1)
+		}
 		else
+		{
 			printf(RED"strchr - simple test 3\n"RESET);
+			T(0)
+		}
 	}
 	else if (a == b)
+	{
 		printf(GREEN"strchr - simple test 3\n"RESET);
-
+		T(1)
+	}
 
 	if (!strcmp(ft_strchr("a", 97), strchr("a", 97)))
+	{
 		printf(GREEN"strchr - simple test 4\n"RESET);
-	
+		T(1)
+	}
+	else
+	{
+		printf(RED"strchr - simple test 4\n"RESET);
+		T(0)
+	}
 }
 
 #define SIZE3	1000
@@ -782,30 +912,43 @@ void	test_strchr(void)
 void	test_strjoin(void)
 {
 	char	*s1;
-//	char	*s2;
-//	char	buf[SIZE3];
-//	char	buf2[SIZE4];
+	char	*s2;
+	char	buf[SIZE3];
+	char	buf2[SIZE4];
 
 	ft_strjoin(NULL, NULL);
 	printf(GREEN"strjoin - NULL ptr\n"RESET);
+	T(1)
 	
 	s1 = ft_strjoin("hello", "world");
 	if (!strcmp(s1, "helloworld"))
+	{
 		printf(GREEN"strjoin - simple test\n"RESET);
+		T(1)
+	}
 	else
+	{
 		printf(RED"strjoin - simple test\n"RESET);
+		T(0)
+	}
 	
-//	bzero(buf, SIZE3);
-//	memset(buf, 'A', SIZE3 -1);
-//
-//	bzero(buf2, SIZE4);
-//	memset(buf2, 'A', SIZE4 -1);
-//	s1 = ft_strjoin(buf, buf2);	
-//	s2 = strjoin(buf, buf2);
-//	if (!strcmp(s1, s2))
-//		printf(GREEN"strjoin - fat test\n"RESET);
-//	else
-//		printf(RED"strjoin - fat test\n"RESET);
+	bzero(buf, SIZE3);
+	memset(buf, 'A', SIZE3 -1);
+
+	bzero(buf2, SIZE4);
+	memset(buf2, 'A', SIZE4 -1);
+	s1 = ft_strjoin(buf, buf2);	
+	s2 = strjoin(buf, buf2);
+	if (!strcmp(s1, s2))
+	{
+		printf(GREEN"strjoin - fat test\n"RESET);
+		T(1)
+	}
+	else
+	{
+		printf(RED"strjoin - fat test\n"RESET);
+		T(0)
+	}
 }
 	
 int	main(int argc, char **argv)
