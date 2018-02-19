@@ -9,15 +9,14 @@ _ft_strdup:
 	mov rbp, rsp
 	cmp rdi, 0
 	je _end
-	sub rsp, 24
+	sub rsp, 32
 	mov qword [rbp - 8], rdi
+	mov rdi, qword [rbp - 8]
 	call _ft_strlen
 	add rax, 1
 	mov qword [rbp - 16], rax
-	mov rdi, qword rax
+	mov rdi, qword [rbp - 16]
 	call _malloc
-	leave
-	ret
 	mov qword [rbp - 24], rax
 	mov rdi, qword rax
 	mov rsi, qword [rbp - 8]

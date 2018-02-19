@@ -2,6 +2,7 @@ NAME		= libfts.a
 
 ASM		= nasm
 ASM_FLAGS	= -f macho64
+FLAGS	= -Wall -Wextra -Werror
 
 LC		= ar -rc
 IC		= ranlib
@@ -54,7 +55,7 @@ $(OBJ_DIR):
 	$(MKDIR) $(OBJ_DIR)
 
 test:
-	gcc -o maintest maintest.c $(NAME)
+	gcc $(FLAGS) -o maintest maintest.c $(NAME)
 	./maintest $(ARG)
 
 clean:

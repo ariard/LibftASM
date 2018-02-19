@@ -5,11 +5,13 @@ section .text
 _ft_test:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 24
-	add rsp, 24
-	mov rdi, 20
+	sub rsp, 32
+	mov rax, 10
+	mov rdi, rax
 	call _malloc
-
+	xor ecx, ecx
+	mov qword [rbp - 32], rax
+	mov eax, ecx
 _end:
 	leave
 	ret
