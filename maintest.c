@@ -384,25 +384,16 @@ void	test_memcpy(void)
 	char	test[1000 + 1];
 	char	wit[1000 + 1];
 	char	buf[1000 + 1];
-	//char	test2[8] = "hello ";
-	//char	wit2[8] = "hello ";
-	//char	test3[1000 + 1];
-	//char	wit3[1000 + 1] = "hello ";
-	//char	*b = "world!";
-	//char	c[1000 + 1];
 	char	*d;
 	int	i;
 
 	ft_memcpy(NULL, NULL, 10);	
 	printf(GREEN"memcpy - NULL str\n"RESET);
+	T(1)
 	
 	ft_memcpy("hello", "world", 0);	
 	printf(GREEN"memcpy - 0 size\n"RESET);
-
-//	memset(test3, 'A', 1000);
-// 	ft_memcpy("hello", 'A' 
-//	printf(GREEN"memcpy - overflow memcpy\n"RESET);
-//	bus error 
+	T(1)
 
 	memset(test, 'A', 1000);
 	memcpy(wit, test, 1000);
@@ -414,10 +405,14 @@ void	test_memcpy(void)
 		if (buf[i] != wit[i])
 		{
 			printf(RED"memcpy - simple test\n"RESET);
+			T(0)
 			break;
 		}
 	if (i == 1000)
+	{
 		printf(GREEN"memcpy - simple test\n"RESET);
+		T(1)
+	}
 
 	bzero(test, 1000);
 	memset(test, 'B', 500);
@@ -430,10 +425,14 @@ void	test_memcpy(void)
 		if (buf[i] != wit[i])
 		{
 			printf(RED"memcpy - simple test 2\n"RESET);
+			T(0)
 			break;
 		}
 	if (i == 1000)
+	{
 		printf(GREEN"memcpy - simple test 2\n"RESET);
+		T(1)
+	}
 
 	bzero(test, 1000);
 	memset(&test[500], 'A', 500);
@@ -446,10 +445,14 @@ void	test_memcpy(void)
 		if (buf[i] != wit[i])
 		{
 			printf(RED"memcpy - simple test 3\n"RESET);
+			T(0)
 			break; 
 		}
 	if (i == 1000)
+	{
 		printf(GREEN"memcpy - simple test 3\n"RESET);
+		T(1)
+	}
 
 	bzero(test, 1000);
 	memset(&test[500], 'A', 500);
@@ -462,10 +465,14 @@ void	test_memcpy(void)
 		if (d[i] != wit[i])
 		{
 			printf(RED"memcpy - simple test 4\n"RESET);
+			T(0)
 			break; 
 		}
 	if (i == 1000)
+	{
 		printf(GREEN"memcpy - simple test 4\n"RESET);
+		T(1)
+	}
 }
 
 # define SIZE	100000
@@ -480,6 +487,7 @@ void	test_strdup(void)
 
 	ft_strdup(NULL);
 	printf(GREEN"strdup - NULL ptr\n"RESET);
+	T(1)
 
 	wit = strdup("");
 	test = strdup("");
@@ -488,11 +496,15 @@ void	test_strdup(void)
 		if (wit[i] != test[i])
 		{
 			printf(RED"strdup - 0 char\n"RESET);
+			T(0)
 			break;
 		}
 	free(test);
 	if (i == 1)
+	{
 		printf(GREEN"strdup - 0 char\n"RESET);
+		T(1)
+	}
 
 	wit = strdup(little);
 	test = strdup(little);
@@ -501,11 +513,15 @@ void	test_strdup(void)
 		if (wit[i] != test[i])
 		{
 			printf(RED"strdup - simple test\n"RESET);
+			T(0)
 			break;
 		}
 	free(test);
 	if (i == 12)
+	{
 		printf(GREEN"strdup - simple test\n"RESET);
+		T(1)
+	}
 
 	bzero(fat, SIZE);	
 	memset(fat, 'A', SIZE - 1);
@@ -518,11 +534,15 @@ void	test_strdup(void)
 		if (wit[i] != test[i])
 		{
 			printf(RED"strdup - fat test\n"RESET);
+			T(0)
 			break;
 		}
 	free(test);
 	if (i == SIZE)
+	{
 		printf(GREEN"strdup - fat test\n"RESET);
+		T(1)
+	}
 
 	bzero(fat, SIZE);	
 	memset(fat, 'A', SIZE - 1);
@@ -537,11 +557,15 @@ void	test_strdup(void)
 		if (wit[i] != test[i])
 		{
 			printf(RED"strdup - cut-buffer test\n"RESET);
+			T(0)
 			break;
 		}
 	free(test);
 	if (i == 50000)
+	{
 		printf(GREEN"strdup - cut-buffer test\n"RESET);
+		T(1)
+	}
 	
 }
 
@@ -553,6 +577,7 @@ void	test_memset(void)
 
 	ft_memset(NULL, 0, 0);
 	printf(GREEN"memset - NULL str\n"RESET);
+	T(1)
 
 	memset(wit, 'A', 20);
 	ft_memset(test, 'A', 20);
@@ -561,10 +586,14 @@ void	test_memset(void)
 		if (test[i] != wit[i])
 		{
 			printf(RED"memset - simple test\n"RESET);
+			T(0)
 			break;
 		}
 	if (i == 20)
+	{
 		printf(GREEN"memset - simple test\n"RESET);
+		T(1)
+	}
 
 	memset(wit, 'B', 0);
 	ft_memset(test, 'B', 0);
@@ -573,10 +602,14 @@ void	test_memset(void)
 		if (test[i] != wit[i])
 		{
 			printf(RED"memset - 0 size\n"RESET);
+			T(0)
 			break;
 		}
 	if (i == 20)
+	{
 		printf(GREEN"memset - 0 size\n"RESET);
+		T(1)
+	}
 }
 
 void	test_strcmp(void)
