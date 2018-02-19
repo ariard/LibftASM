@@ -37,15 +37,11 @@ void	ft_cat(int fd);
 
 char	*ft_strcat(char *s1, char *s2); 
 
-//int		ft_strcat(char *s1, char *s2); 
-
 int		ft_strcmp(char *s1, char *s2);
 
 char	*ft_strjoin(char *s1, char *s2);
  
 char	*ft_strstr(char *s1, char *s2);
-
-//int	ft_strstr(char *s1, char *s2);
 
 char	*ft_strchr(char *s1, int c);
 

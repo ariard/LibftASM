@@ -55,8 +55,8 @@ $(OBJ_DIR):
 	$(MKDIR) $(OBJ_DIR)
 
 test:
-	gcc $(FLAGS) -o maintest maintest.c $(NAME)
-	./maintest $(ARG)
+	@gcc $(FLAGS) -o maintest maintest.c $(NAME)
+	@./maintest $(ARG)
 
 clean:
 	$(RM) $(OBJ_DIR)

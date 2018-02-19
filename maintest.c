@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <strings.h>
 #include <string.h>
 #include <unistd.h>
@@ -6,6 +7,11 @@
 #include <ctype.h>
 
 #include "libft.h"
+
+int		good = 0;
+int		total = 0;
+
+#define T(x)  total++; if (x == 1) { good++; }
 
 char	*strrev(char *str)
 {
@@ -27,20 +33,32 @@ char	*strrev(char *str)
 	return (str);
 }
 
+char	*strjoin(const char *s1, const char *s2)
+{
+	char	*join;
+
+	if (!(join = (char *)malloc(strlen(s1) + strlen(s2) + 1)))
+		return (NULL);
+	if (s1)
+		strcpy(join, s1);
+	if (s2)
+		strcat(join, s2);
+	return (join);
+}
+
 void	test_bzero(void)
 {
 	char	a[16 + 1];
 	char	wit[16];
 	int	i;
 
-	dprintf(2, "test_bzero 1\n");
 	ft_bzero(NULL, 100);
 	printf(GREEN"bzero - NULL ptr\n"RESET);
-
-	dprintf(2, "test_bzero 2\n");
+	T(1)
 
 	ft_bzero(a, 0);
 	printf(GREEN"bzero - 0 size\n"RESET);
+	T(1)
 	
 	bzero(a, 16);
 	bzero(wit, 16);
@@ -51,10 +69,14 @@ void	test_bzero(void)
 		if (a[i] != wit[i])
 		{
 			printf(RED"bzero - simple test\n"RESET);
+			T(0)
 			break;
 		}
 	if (i == 16)
+	{
 		printf(GREEN"bzero - simple test\n"RESET);
+		T(1)
+	}
 
 
 	bzero(a, 16);
@@ -68,66 +90,76 @@ void	test_bzero(void)
 		if (a[i] != wit[i])
 		{
 			printf(RED"bzero - simple test 2\n"RESET);
+			T(0)
 			break;
 		}
 	if (i == 16)
+	{
 		printf(GREEN"bzero - simple test 2\n"RESET);
+		T(1)
+	}
 }
+
+#define SIZE2	1000
 
 void	test_strcat(void)
 {
 	char	test[16] = "hello ";
 	char	wit[16] = "hello ";
-	char	test2[8] = "hello ";
-	char	wit2[8] = "hello ";
-	char	test3[1000 + 1];
-	char	wit3[1000 + 1];
+	char	test3[SIZE2 + 1];
+	char	wit3[SIZE2 + 1];
 	char	*b = "world!";
-	char	c[1000];
+	char	c[SIZE2 -1];
+	char	*s1;
+	char	*s2;
 	int	i;
 
 	ft_strcat(NULL, NULL);	
 	printf(GREEN"strcat - NULL str\n"RESET);
+	T(1)
 
+	ft_strcat("", "");
+	printf(GREEN"strcat - 0 char\n"RESET);
+	T(1)
 
-	strcat(wit, b);
-	ft_strcat(test, b);
+	s1 = strcat(wit, b);
+	s2 = ft_strcat(test, b);
 	i = -1;
 	while (++i < 16)
-		if (test[i] != wit[i])
+		if (s1[i] != s2[i])
 		{
 			printf(RED"strcat - simple test\n"RESET);
+			T(0)
 			break;
 		}
 	if (i == 16)
+	{
 		printf(GREEN"strcat - simple test\n"RESET);
+		T(1)
+	}
 
-//	strcat(wit2, b);
-//	ft_strcat(test2, b);
-//	i = -1;
-//	while (++i < 16)
-//		if (test2[i] != wit2[i])
-//		{
-//			printf(RED"strcat - too short s1\n"RESET);
-//			break;
-//		}
-//	if (i == 16)
-//		printf(GREEN"strcat - too short s1\n"RESET);
 
-	memset(wit3, 0, 1000);
-	memset(c, 'A', 1000);
-	strcat(wit3, c);
-	memset(c, 'A', 1000);
-	ft_strcat(test3, c);
+	memset(wit3, 0, SIZE2 + 1);
+	bzero(c, SIZE2);
+	memset(c, 'A', SIZE2 - 1);
+	s1 = strcat(wit3, c);
+	memset(test3, 0, SIZE2 + 1);
+	bzero(c, SIZE2);
+	memset(c, 'A', SIZE2 - 1);
+	s2 = ft_strcat(test3, c);
 	i = -1;
-	while (++i < 1000)
-		if (test3[i] != wit3[i])
+	while (++i < SIZE2)
+		if (s1[i] != s2[i])
 		{
 			printf(RED"strcat - fat s2\n"RESET);
+			T(0)
 			break;
 		}
-	if (i == 1000)
+	if (i == SIZE2)
+	{
 		printf(GREEN"strcat - fat s2\n"RESET);
+		T(1)
+	}
 }
 
 void	test_isalpha(void)
@@ -138,9 +170,15 @@ void	test_isalpha(void)
 	while (++i < 127)
 	{
 		if (ft_isalpha(i) == isalpha(i))
+		{
 			printf(GREEN"isalpha - %c\n"RESET, i);
+			T(1)
+		}
 		else
+		{
 			printf(RED"isalpha - %c\n"RESET, i);
+			T(0)
+		}
 	}
 }
 
@@ -152,9 +190,15 @@ void	test_isascii(void)
 	while (++i < 127)
 	{
 		if (ft_isascii(i) == isascii(i))
-			printf(GREEN"isalpha - %c\n"RESET, i);
+		{
+			printf(GREEN"isascii - %c\n"RESET, i);
+			T(1)
+		}
 		else
-			printf(RED"isalpha - %c\n"RESET, i);
+		{
+			printf(RED"isascii - %c\n"RESET, i);
+			T(0)
+		}
 	}
 }
 
@@ -167,9 +211,15 @@ void	test_isdigit(void)
 	while (++i < 127)
 	{
 		if (ft_isdigit(i) == isdigit(i))
+		{
 			printf(GREEN"isdigit - %c\n"RESET, i);
+			T(1)
+		}
 		else
+		{
 			printf(RED"isdigit - %c\n"RESET, i);
+			T(0)
+		}
 	}
 }
 
@@ -181,9 +231,15 @@ void	test_isalnum(void)
 	while (++i < 127)
 	{
 		if (ft_isalnum(i) == isalnum(i))
+		{
 			printf(GREEN"isalnum - %c\n"RESET, i);
+			T(1)
+		}
 		else
+		{
 			printf(RED"isalnum - %c\n"RESET, i);
+			T(0)
+		}
 	}
 }
 
@@ -195,9 +251,15 @@ void	test_isprint(void)
 	while (++i < 127)
 	{
 		if (ft_isprint(i) == isprint(i))
+		{
 			printf(GREEN"isprint - %c\n"RESET, i);
+			T(1)
+		}
 		else
+		{
 			printf(RED"isprint - %c\n"RESET, i);
+			T(0)
+		}
 	}
 }
 
@@ -209,9 +271,15 @@ void	test_toupper(void)
 	while (++i < 127)
 	{
 		if (ft_toupper(i) == toupper(i))
+		{
 			printf(GREEN"toupper - %c\n"RESET, i);
+			T(1)
+		}
 		else
+		{
 			printf(RED"toupper - %c\n"RESET, i);
+			T(0)
+		}
 	}
 }
 
@@ -224,19 +292,35 @@ void	test_tolower(void)
 	while (++i < 127)
 	{
 		if (ft_tolower(i) == tolower(i))
+		{
 			printf(GREEN"tolower - %c\n"RESET, i);
+			T(1)
+		}
 		else
+		{
 			printf(RED"tolower - %c\n"RESET, i);
+			T(0)
+		}
 	}
 }
 
 void	test_puts(void)
 {
+	char	buf[10000];
+
 	ft_puts(NULL);
 	printf(GREEN"puts - NULL ptr\n"RESET);
-
+	T(1)
 
 	ft_puts(GREEN"puts - my own printer\n"RESET);
+	T(1)
+
+	bzero(buf, 10000);
+	strcpy(buf, "puts");
+	memset(&buf[4], 'C', 9995 - 1);
+	ft_puts(buf);
+	write(1, "\n", 1);
+	T(1)
 }
 	
 void	test_strlen(void)
@@ -245,31 +329,52 @@ void	test_strlen(void)
 
 	ft_strlen(NULL);
 	printf(GREEN"strlen - NULL ptr\n"RESET);
-
+	T(1)
 
 	if (ft_strlen("") != strlen(""))
+	{
 		printf(RED"strlen - nothing string\n"RESET);
+		T(0)
+	}	
 	else
+	{
 		printf(GREEN"strlen - nothing string\n"RESET);
-
+		T(1)
+	}
 
 	if (ft_strlen("little string") != strlen("little string"))
+	{
 		printf(RED"strlen - little  string\n"RESET);
+		T(0)
+	}
 	else
+	{
 		printf(GREEN"strlen - little string\n"RESET);
-
+		T(1)
+	}
 
 	if (ft_strlen("st\nrin\tg") != strlen("st\nrin\tg"))
+	{
 		printf(RED"strlen - special char string\n"RESET);
+		T(0)
+	}
 	else
+	{
 		printf(GREEN"strlen - special char string\n"RESET);
-
+		T(1)
+	}
 
 	memset(a, 'A', 1000);	
 	if (ft_strlen(a) != strlen(a))
+	{
 		printf(RED"strlen - fat string\n"RESET);
+		T(0)
+	}
 	else
+	{
 		printf(GREEN"strlen - fat string\n"RESET);
+		T(1)
+	}
 }
 
 # define COND(w, x, y, z)		if (!strcmp(argv[1], x) || !strcmp(argv[1], y) || !strcmp(argv[1], z)) { w; }
@@ -279,12 +384,12 @@ void	test_memcpy(void)
 	char	test[1000 + 1];
 	char	wit[1000 + 1];
 	char	buf[1000 + 1];
-	char	test2[8] = "hello ";
-	char	wit2[8] = "hello ";
-	char	test3[1000 + 1];
-	char	wit3[1000 + 1] = "hello ";
-	char	*b = "world!";
-	char	c[1000 + 1];
+	//char	test2[8] = "hello ";
+	//char	wit2[8] = "hello ";
+	//char	test3[1000 + 1];
+	//char	wit3[1000 + 1] = "hello ";
+	//char	*b = "world!";
+	//char	c[1000 + 1];
 	char	*d;
 	int	i;
 
@@ -363,30 +468,81 @@ void	test_memcpy(void)
 		printf(GREEN"memcpy - simple test 4\n"RESET);
 }
 
+# define SIZE	100000
+
 void	test_strdup(void)
 {
-	char	*b = "hello world";
-	char	*d;
-	char	c[20];
+	char	*little = "hello world";
+	char	fat[SIZE];
+	char	*wit;
+	char	*test;
 	int	i;
 
-	ft_test("hello");
-	return;
 	ft_strdup(NULL);
+	printf(GREEN"strdup - NULL ptr\n"RESET);
 
-//	d = strdup(b);
-//	i = -1;
-//	while (++i < 11)
-//		if (d[i] != b[i])
-//		{
-//			printf(RED"strdup - simple test\n"RESET);
-//			break;
-//		}
-//	if (i == 11)
-//		printf(GREEN"strdup - simple test\n"RESET);
+	wit = strdup("");
+	test = strdup("");
+	i = -1;
+	while (++i < 1)
+		if (wit[i] != test[i])
+		{
+			printf(RED"strdup - 0 char\n"RESET);
+			break;
+		}
+	free(test);
+	if (i == 1)
+		printf(GREEN"strdup - 0 char\n"RESET);
 
-	ft_strdup("hello");
-//	printf(GREEN"strdup - simple test 2\n"RESET);
+	wit = strdup(little);
+	test = strdup(little);
+	i = -1;	
+	while (++i < 12)
+		if (wit[i] != test[i])
+		{
+			printf(RED"strdup - simple test\n"RESET);
+			break;
+		}
+	free(test);
+	if (i == 12)
+		printf(GREEN"strdup - simple test\n"RESET);
+
+	bzero(fat, SIZE);	
+	memset(fat, 'A', SIZE - 1);
+	wit = strdup(fat);
+	bzero(fat, SIZE);	
+	memset(fat, 'A', SIZE - 1);
+	test = strdup(fat);
+	i = -1;	
+	while (++i < SIZE)
+		if (wit[i] != test[i])
+		{
+			printf(RED"strdup - fat test\n"RESET);
+			break;
+		}
+	free(test);
+	if (i == SIZE)
+		printf(GREEN"strdup - fat test\n"RESET);
+
+	bzero(fat, SIZE);	
+	memset(fat, 'A', SIZE - 1);
+	fat[50000] = 0;
+	wit = strdup(fat);
+	bzero(fat, SIZE);	
+	memset(fat, 'A', SIZE - 1);
+	fat[50000] = 0;
+	test = strdup(fat);
+	i = -1;	
+	while (++i < 50000)
+		if (wit[i] != test[i])
+		{
+			printf(RED"strdup - cut-buffer test\n"RESET);
+			break;
+		}
+	free(test);
+	if (i == 50000)
+		printf(GREEN"strdup - cut-buffer test\n"RESET);
+	
 }
 
 void	test_memset(void)
@@ -454,7 +610,6 @@ void	test_strcmp(void)
 
 void	test_strrev(void)
 {
-	char	*a;
 	char	s1[20];
 	char	s2[20];
 
@@ -496,7 +651,6 @@ void	test_strstr(void)
 {
 	char	*a;
 	char	*b;
-	int		c;
 
 	ft_strstr(NULL, "needle");
 	printf(GREEN"strstr - NULL ptr\n");
@@ -586,14 +740,39 @@ void	test_strchr(void)
 
 	if (!strcmp(ft_strchr("a", 97), strchr("a", 97)))
 		printf(GREEN"strchr - simple test 4\n"RESET);
-	else
-		printf(RED"strchr - simple test 4\n"RESET);
 	
 }
 
+#define SIZE3	1000
+#define SIZE4	10000
+
 void	test_strjoin(void)
 {
-	printf("%s\n", ft_strjoin("hello", "world"));
+	char	*s1;
+//	char	*s2;
+//	char	buf[SIZE3];
+//	char	buf2[SIZE4];
+
+	ft_strjoin(NULL, NULL);
+	printf(GREEN"strjoin - NULL ptr\n"RESET);
+	
+	s1 = ft_strjoin("hello", "world");
+	if (!strcmp(s1, "helloworld"))
+		printf(GREEN"strjoin - simple test\n"RESET);
+	else
+		printf(RED"strjoin - simple test\n"RESET);
+	
+//	bzero(buf, SIZE3);
+//	memset(buf, 'A', SIZE3 -1);
+//
+//	bzero(buf2, SIZE4);
+//	memset(buf2, 'A', SIZE4 -1);
+//	s1 = ft_strjoin(buf, buf2);	
+//	s2 = strjoin(buf, buf2);
+//	if (!strcmp(s1, s2))
+//		printf(GREEN"strjoin - fat test\n"RESET);
+//	else
+//		printf(RED"strjoin - fat test\n"RESET);
 }
 	
 int	main(int argc, char **argv)
@@ -620,5 +799,6 @@ int	main(int argc, char **argv)
 	COND(test_strstr(), "strstr", "bonus", "all")
 	COND(test_strchr(), "strchr", "bonus", "all")
 	COND(test_strjoin(), "strjoin", "bonus", "all")
+	dprintf(1, "\n ------------------\n [RESULTAT] %d/%d\n", good, total);
 	return (0);
 }

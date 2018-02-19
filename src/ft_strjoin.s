@@ -8,15 +8,21 @@ section .text
 _ft_strjoin: 
 	push rbp
 	mov rbp, rsp
-	sub rsp, 32	
+	sub rsp, 32
+	cmp rdi, 0
+	je _null
+	cmp rsi, 0
+	je _null
 	mov qword [rbp - 8], rdi
 	mov qword [rbp - 16], rsi		
 	mov rdi, qword [rbp - 8]
 	call _ft_strlen
 	mov qword [rbp - 24], rax
 	mov rdi, qword [rbp - 16]	
+	call _ft_strlen
 	add rax, 1
 	add rax, qword [rbp - 24]
+	mov rdi, rax
 	call _malloc 
 	mov rdi, rax
 	mov rsi, qword [rbp - 8]
@@ -26,6 +32,9 @@ _ft_strjoin:
 	mov rdi, rax
 	mov rsi, qword [rbp - 16]
 	call _ft_strcat
+	jmp _end
+_null:
+	xor rax, rax		
 _end:
 	leave
 	ret

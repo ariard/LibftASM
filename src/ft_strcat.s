@@ -28,7 +28,7 @@ _ft_strcat:
 	cmp rax, 0
 	je _cpy
 	add rax, 1 
-_cpy
+_cpy:
 	mov rdi, qword [rbp - 32]
 	mov rsi, qword [rbp - 16]
 	mov rdx, rax 	; beware NULL char

@@ -3,8 +3,9 @@ NOW:
 	- maintest
 
 TODO: 
-	- fonction bonus
 
+	- check on const char
+	- check call malloc
 	- HARDENING project (bzero, strlen, strcat) :
 		- null ptr
 		- overflow character
