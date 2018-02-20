@@ -98,6 +98,24 @@ void	test_bzero(void)
 		printf(GREEN"bzero - simple test 2\n"RESET);
 		T(1)
 	}
+
+	memset(wit, 'A', 16);
+	memset(a, 'A', 16);
+	bzero(wit, 1);
+	ft_bzero(a, 1);
+	i = -1;
+	while (++i < 16)
+		if (a[i] != wit[i])
+		{
+			printf(RED"bzero - simple test 3\n"RESET);
+			T(0)
+			break;
+		}
+	if (i == 16)
+	{
+		printf(GREEN"bzero - simple test 3\n"RESET);
+		T(1)
+	}
 }
 
 #define SIZE2	1000
@@ -311,6 +329,7 @@ void	test_puts(void)
 	ft_puts(NULL);
 	printf(GREEN"puts - NULL ptr\n"RESET);
 	T(1)
+
 
 	ft_puts(GREEN"puts - my own printer\n"RESET);
 	T(1)

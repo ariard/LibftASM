@@ -31,7 +31,7 @@ _ft_strcat:
 _cpy:
 	mov rdi, qword [rbp - 32]
 	mov rsi, qword [rbp - 16]
-	mov rdx, rax 	; beware NULL char
+	mov rdx, rax 	
 	call _ft_memcpy
 	mov rax, qword [rbp - 8]
 	jmp _end

@@ -1,3 +1,7 @@
+section .data
+	str: db "(null)", 10
+	.len: equ $ - str
+
 section .text
 	global _ft_puts
 	extern _ft_strlen
@@ -17,9 +21,14 @@ _ft_puts:
 	mov rax, 0x2000000 | 4
 	syscall
 	xor rax, rax
-	mov eax, dword [rbp - 16]
+	mov eax, 10
 	jmp _end
-_null:
+_null:	
+	mov rdx, str.len
+	mov rdi, 1
+	lea rsi, [rel str]	
+	mov rax, 0x2000000 | 4
+	syscall
 	xor rax, rax
 _end:
 	leave

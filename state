@@ -4,7 +4,6 @@ NOW:
 
 TODO: 
 
-	- check on const char
 	- check call malloc
 	- HARDENING project (bzero, strlen, strcat) :
 		- null ptr
