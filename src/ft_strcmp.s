@@ -11,7 +11,7 @@ section .text
 _ft_strcmp:
 	push rbp
 	mov rbp, rsp
-	sub	rsp, 20
+	sub rsp, 24
 	xor rax, rax
 	cmp rdi, 0
 	je _end
@@ -20,16 +20,16 @@ _ft_strcmp:
 	mov qword [rbp - 8], rdi
 	mov qword [rbp - 16], rsi
 	call _ft_strlen
-	mov dword [rbp - 20], eax
+	mov qword [rbp - 24], rax
 	mov rdi, qword [rbp - 16]
 	call _ft_strlen
 	xor rcx, rcx
-	cmp eax, dword [rbp - 20]
+	cmp rax, qword [rbp - 24]
 	jg _less
-	mov ecx, eax
+	mov rcx, rax
 	jmp _cmp
 _less:
-	mov ecx, dword [rbp - 20]
+	mov rcx, qword [rbp - 24]
 _cmp:	
 	mov rdi, qword [rbp - 8]
 	mov rsi, qword [rbp - 16]

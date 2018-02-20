@@ -14,9 +14,9 @@ _ft_strchr:
 	call _ft_strlen
 	cmp rax, 0
 	je _null
-	mov rdi, qword [rbp - 8]
 	add rax, 1
 	mov rcx, rax
+	mov rdi, qword [rbp - 8]
 	mov al, sil		; set al as char to search
 	cld
 	repne scasb 	

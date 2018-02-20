@@ -4,13 +4,14 @@ NOW:
 
 TODO: 
 
-	- check call malloc
 	- HARDENING project (bzero, strlen, strcat) :
 		- null ptr
 		- overflow character
 		- overflow attack on strcat
+		- align malloc
 	
 	- test +127 memset	
+	- look moar on strcmp, strrev
 
 
  LESSONS :
