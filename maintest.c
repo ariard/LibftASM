@@ -350,6 +350,7 @@ void	test_strlen(void)
 	printf(GREEN"strlen - NULL ptr\n"RESET);
 	T(1)
 
+
 	if (ft_strlen("") != strlen(""))
 	{
 		printf(RED"strlen - nothing string\n"RESET);
@@ -406,8 +407,12 @@ void	test_memcpy(void)
 	char	*d;
 	int	i;
 
-	ft_memcpy(NULL, NULL, 10);	
+	ft_memcpy(NULL, "str", 10);	
 	printf(GREEN"memcpy - NULL str\n"RESET);
+	T(1)
+
+	ft_memcpy(test, NULL, 10);	
+	printf(GREEN"memcpy - NULL s2\n"RESET);
 	T(1)
 	
 	ft_memcpy("hello", "world", 0);	
@@ -585,13 +590,14 @@ void	test_strdup(void)
 		printf(GREEN"strdup - cut-buffer test\n"RESET);
 		T(1)
 	}
-	
 }
 
 void	test_memset(void)
 {
 	char	test[20];
 	char	wit[20];
+	char	*a;
+	char	*b;
 	int	i;
 
 	ft_memset(NULL, 0, 0);
@@ -611,6 +617,23 @@ void	test_memset(void)
 	if (i == 20)
 	{
 		printf(GREEN"memset - simple test\n"RESET);
+		T(1)
+	}
+
+
+	a = memset(wit, 'A', 20);
+	b = ft_memset(test, 'A', 20);
+	i = -1;
+	while (++i < 20)
+		if (a[i] != b[i])
+		{
+			printf(RED"memset - simple test 2\n"RESET);
+			T(0)
+			break;
+		}
+	if (i == 20)
+	{
+		printf(GREEN"memset - simple test 2\n"RESET);
 		T(1)
 	}
 

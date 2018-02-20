@@ -17,12 +17,17 @@ _ft_strdup:
 	mov qword [rbp - 16], rax
 	mov rdi, qword [rbp - 16]
 	call _malloc
+	cmp rax, 0
+	je _null
 	mov qword [rbp - 24], rax
 	mov rdi, qword rax
 	mov rsi, qword [rbp - 8]
 	mov rdx, qword [rbp - 16]
 	call _ft_memcpy 			; beware NULL char
 	mov rax, qword [rbp - 24]
+	jmp _end
+_null:
+	xor rax, rax		
 _end:
 	leave
 	ret

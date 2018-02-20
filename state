@@ -9,8 +9,8 @@ TODO:
 		- null ptr
 		- overflow character
 		- overflow attack on strcat
-
-	- test return value of all functions
+	
+	- test +127 memset	
 
 
  LESSONS :

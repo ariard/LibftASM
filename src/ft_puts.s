@@ -20,7 +20,8 @@ _ft_puts:
 	mov rsi, qword [rbp - 8]
 	mov rax, 0x2000000 | 4
 	syscall
-	xor rax, rax
+	cmp rax, 0
+	jl _end
 	mov eax, 10
 	jmp _end
 _null:	
@@ -29,7 +30,9 @@ _null:
 	lea rsi, [rel str]	
 	mov rax, 0x2000000 | 4
 	syscall
-	xor rax, rax
+	cmp rax, 0
+	jl _end
+	mov eax, 10
 _end:
 	leave
 	ret

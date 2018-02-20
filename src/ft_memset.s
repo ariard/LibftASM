@@ -6,14 +6,16 @@ _ft_memset:
 	mov rbp, rsp
 	cmp rdi, 0
 	je _null
-	mov rax,  rsi
+	sub rsp, 8
+	mov qword [rbp - 8], rdi
+	mov al, sil
 	mov rcx, rdx
 	cld
-	repnz stosb
-	mov rax, rdi
+	rep stosb
+	mov rax, qword [rbp - 8]
 	jmp _end
 _null:
-	mov rax, rdi
+	mov rax, qword [rbp - 8]
 _end:
 	leave
 	ret
