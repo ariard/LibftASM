@@ -430,6 +430,10 @@ void	test_memcpy(void)
 	printf(GREEN"memcpy - 0 size\n"RESET);
 	T(1)
 
+	ft_memcpy(test, "", 1);	
+	printf(GREEN"memcpy - 0 char\n"RESET);
+	T(1)
+
 	memset(test, 'A', 1000);
 	memcpy(wit, test, 1000);
 	memset(test, 'A', 1000);
