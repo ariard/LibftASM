@@ -332,8 +332,18 @@ void	test_puts(void)
 	printf(GREEN"puts - NULL ptr\n"RESET);
 	T(1)
 
+	if (ft_puts("") < 0)
+	{
+		printf(RED"puts - 0 char *\n"RESET);
+		T(0)
+	}
+	else
+	{
+		printf(GREEN"puts - 0 char *\n"RESET);
+		T(1)
+	}
 
-	ft_puts(GREEN"puts - my own printer\n"RESET);
+	ft_puts(GREEN"puts - my own printer"RESET);
 	T(1)
 
 	bzero(buf, 10000);
@@ -343,7 +353,7 @@ void	test_puts(void)
 	write(1, "\n", 1);
 	T(1)
 }
-	
+
 void	test_strlen(void)
 {
 	char	a[1000 + 1];
@@ -351,7 +361,6 @@ void	test_strlen(void)
 	ft_strlen(NULL);
 	printf(GREEN"strlen - NULL ptr\n"RESET);
 	T(1)
-
 
 	if (ft_strlen("") != strlen(""))
 	{

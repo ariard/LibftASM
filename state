@@ -10,9 +10,7 @@ TODO:
 		- overflow attack on strcat
 		- align malloc
 	
-	- test +127 memset	
 	- look moar on strcmp, strrev
-
 
  LESSONS :
  	- does my input is valid

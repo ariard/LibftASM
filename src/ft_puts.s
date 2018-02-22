@@ -1,6 +1,8 @@
 section .data
 	str: db "(null)", 10
 	.len: equ $ - str
+	nl: db 10
+	.len equ $ - nl
 
 section .text
 	global _ft_puts
@@ -18,6 +20,13 @@ _ft_puts:
 	mov rdx, qword [rbp - 16]
 	mov rdi, 1
 	mov rsi, qword [rbp - 8]
+	mov rax, 0x2000000 | 4
+	syscall
+	cmp rax, 0
+	jl _end
+	mov rdx, nl.len
+	mov rdi, 1
+	lea rsi, [rel nl]
 	mov rax, 0x2000000 | 4
 	syscall
 	cmp rax, 0
