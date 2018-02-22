@@ -1,12 +1,7 @@
-section .data
-	int_format: db "int is %d\n", 0
-
 section .text
 	global _ft_strcat
 	extern _ft_strlen
-	extern _strlen
 	extern _ft_memcpy
-	extern _printf
 
 _ft_strcat:
 	push rbp
