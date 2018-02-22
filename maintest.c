@@ -598,17 +598,36 @@ void	test_memset(void)
 	char	wit[20];
 	char	*a;
 	char	*b;
-	int	i;
+	int		i;
+	int		j;
 
 	ft_memset(NULL, 0, 0);
 	printf(GREEN"memset - NULL str\n"RESET);
 	T(1)
 
-	memset(wit, 'A', 20);
-	ft_memset(test, 'A', 20);
+	bzero(test, 20);
+	bzero(wit, 20);
+	memset(wit, 'B', 0);
+	ft_memset(test, 'B', 0);
 	i = -1;
 	while (++i < 20)
 		if (test[i] != wit[i])
+		{
+			printf(RED"memset - 0 size : %s\n"RESET, test);
+			T(0)
+			break;
+		}
+	if (i == 20)
+	{
+		printf(GREEN"memset - 0 size : %s\n"RESET, test);
+		T(1)
+	}
+
+	a = memset(wit, 'A', 20);
+	b = ft_memset(test, 'A', 20);
+	i = -1;
+	while (++i < 20)
+		if (a[i] != b[i])
 		{
 			printf(RED"memset - simple test\n"RESET);
 			T(0)
@@ -620,38 +639,30 @@ void	test_memset(void)
 		T(1)
 	}
 
-
-	a = memset(wit, 'A', 20);
-	b = ft_memset(test, 'A', 20);
-	i = -1;
-	while (++i < 20)
-		if (a[i] != b[i])
-		{
-			printf(RED"memset - simple test 2\n"RESET);
-			T(0)
-			break;
-		}
-	if (i == 20)
+	i = 0;
+	while (++i < 127)
 	{
-		printf(GREEN"memset - simple test 2\n"RESET);
-		T(1)
-	}
-
-	memset(wit, 'B', 0);
-	ft_memset(test, 'B', 0);
-	i = -1;
-	while (++i < 20)
-		if (test[i] != wit[i])
+		bzero(test, 20);
+		bzero(wit, 20);
+		memset(wit, i, 20);
+		ft_memset(test, i, 20);
+		j = -1;
+		while (++j < 20)
+			{ 
+				if (test[j] != wit[j])
+				{
+					printf(RED"memset - all test\n"RESET);
+					T(0)
+					break;
+				}
+			}
+		if (j == 20)
 		{
-			printf(RED"memset - 0 size\n"RESET);
-			T(0)
-			break;
+			printf(GREEN"memset - all test\n"RESET);			 
+			T(1)
 		}
-	if (i == 20)
-	{
-		printf(GREEN"memset - 0 size\n"RESET);
-		T(1)
 	}
+	return ;
 }
 
 /*
