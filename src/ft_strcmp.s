@@ -1,8 +1,3 @@
-%define MAX 	0x7FFFFFFFFFFFFFFF 
-
-section	.data
-	int_format: db "int is ", 0
-
 section .text
 	global _ft_strcmp
 	extern _ft_strlen
