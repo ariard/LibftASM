@@ -14,9 +14,9 @@ _ft_strcmp:
 	sub rsp, 24
 	xor rax, rax
 	cmp rdi, 0
-	je _end
+	je _null
 	cmp rsi, 0
-	je _end
+	je _null
 	mov qword [rbp - 8], rdi
 	mov qword [rbp - 16], rsi
 	call _ft_strlen
@@ -41,6 +41,9 @@ _cmp:
 	mov al, byte [rdi]
 	sub al, byte [rsi]
 	movsx eax, al
+	jmp _end
+_null:
+	xor eax, eax
 _end:
 	leave
 	ret

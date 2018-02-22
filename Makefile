@@ -34,15 +34,12 @@ ft_strchr.s\
 ft_strstr.s\
 ft_strrev.s\
 ft_strjoin.s\
-ft_test.s\
-
 
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJS		= $(addprefix $(OBJ_DIR), $(SRC_BASE:.s=.o))
 
 
-all:
-	make $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJS)
 	$(LC) $(NAME) $(OBJS)			
