@@ -284,18 +284,20 @@ void	test_isprint(void)
 void	test_toupper(void)
 {
 	char	i;
+	char	b;
+	char	c;
 
 	i = -1;
 	while (++i < 127)
 	{
-		if (ft_toupper(i) == toupper(i))
+		if ((b = ft_toupper(i)) == (c = toupper(i)))
 		{
-			printf(GREEN"toupper - %c\n"RESET, i);
+			printf(GREEN"toupper - %c vs %c\n"RESET, b, c);
 			T(1)
 		}
 		else
 		{
-			printf(RED"toupper - %c\n"RESET, i);
+			printf(RED"toupper - %c vs %c\n"RESET, b, c);
 			T(0)
 		}
 	}

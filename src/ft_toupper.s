@@ -9,7 +9,7 @@ _ft_toupper:
 	cmp edi, 0x7a
 	jg _end
 	sub edi, 0x20
-	mov eax, edi
 _end:
+	mov eax, edi
 	leave
 	ret
